@@ -114,3 +114,23 @@ Cũng mở bằng kết luận, nhưng A1 kể **xuôi** như pipeline: một **
 ## 5. Hai điểm cần chốt trước khi tập
 1. **Tiansheng chưa có lượt A1** và đang có lượt A2 ngắn nhất (2:15). Hoặc giữ nguyên (chỉ trong roster và Q&A), hoặc chia phần cấp tập: **Tim nói reconcile (Task 2) 0:45, Tiansheng nói check (Task 4) 0:45**, rồi Tim tiếp 1.0 (thêm một lượt, Tiansheng lên ~3:00).
 2. **Minh (2.1) và Riley (Block 5) chồng nhau** ở confidence và export audit. Đề xuất: *Minh = nội dung và ý nghĩa của log (định nghĩa high/medium/low một câu, 184 dòng); Riley = máy ghi và toàn vẹn (recorder 9 cột, rule `medium`, smoke test, export, read-back)*. Riley nhắc lại, không định nghĩa lại.
+
+---
+
+## 6. Quyết định chốt: Flow A, Tim nói reconcile, Tiansheng nói check
+
+| # | Giờ | Người nói | Nội dung |
+|---|---|---|---|
+| 1 | 0:00–2:00 | Riley | Roster · Exec summary · A1 finding |
+| 2 | 2:00–2:45 | **Tim** | A1 **reconcile** (Task 2): 3,850 + 3,850 − 700 = 7,000, 0 xung đột |
+| 3 | 2:45–3:30 | **Tiansheng** | A1 **check** (Task 4): `VAL-FLOW`, `VAL-TEXT-01/02`, `T3-TEXT-05` |
+| 4 | 3:30–4:45 | **Tim** | **1.0** của A2 |
+| 5 | 4:45–8:45 | Minh | A1 cấp bản ghi (Task 1 + 3) · Block 1 · 1.1 · 2.1 |
+| 6 | 8:45–10:15 | Tiansheng | 1.2 missing |
+| 7 | 10:15–13:30 | Sally | Block 4 · 1.3 · 3.1 |
+| 8 | 13:30–14:35 | Tim | 3.2 + 3.3 |
+| 9 | 14:35–15:20 | Tiansheng | 3.4 |
+| 10 | 15:20–16:10 | Sally | 3.5 |
+| 11 | 16:10–18:10 | Riley | Block 5 · 1.4 · 2.2 · Reflection |
+
+Tải: Riley 4:00 · Tim 3:50 · Minh 4:00 · Tiansheng 3:00 · Sally 4:05 (tổng 18:10). Đoạn A1 (lượt 2–4) là **relay ba người × ~45 s** nên phải dùng khuôn cố định *Question → Decision → Evidence on screen → "so what"*.
