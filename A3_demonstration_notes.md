@@ -1,7 +1,13 @@
 # FIT5196 A3 — Demonstration Notes (Group005)
 
-**Phạm vi:** (A) EDA & ML question của A1 · (B) A2: Seasonal delivery charge **spec 3.5**, **section 1.3**, **3.1, 3.2, 3.5**.
-**Nguồn bằng chứng:** `Group005_solution_A3_revised.ipynb` (mọi con số bên dưới lấy từ output đã lưu trong notebook, trừ khi ghi "tự tính lại"), `ass2_spec.md` / A2 spec PDF, A3 specification + rubric.
+**Phạm vi:** (A) A1 — EDA & ML questions (kèm *representative path* JSON/XML → bảng → finding) · (B) A2 — Seasonal delivery charge **spec 3.5**, **section 1.3**, **Task 3: 3.1, 3.2, 3.5**.
+**Nguồn bằng chứng:**
+- A1: `Group005_EDA.ipynb`, `Group005_EDA.pdf`, `Group005_solution.ipynb`, `Group005_source_to_target_mapping.csv`, 6 CSV chuẩn hóa (`Group005_A1_submission.zip`).
+- A2: `Group005_solution_A3_revised.ipynb`, `ass2_spec.md` / A2 spec PDF.
+- A3: specification + marking rubric.
+- Mọi con số lấy từ output đã lưu trong notebook/PDF, trừ khi đánh dấu 🔁 (tôi tự tính lại độc lập từ dữ liệu).
+
+**Cấu trúc mỗi phần:** *anchor lý thuyết/phương pháp trong môn → what–why–how của từng quyết định theo case → demo 4 bước → grain–units–limits → Q&A (kể cả changed-condition).*
 
 ---
 
@@ -9,8 +15,8 @@
 
 | # | Vấn đề | Cách tôi xử lý | Việc bạn cần làm |
 |---|---|---|---|
-| 1 | **A1 không có trong repo** (không notebook, không output A1). | Phần A chỉ là **khung (scaffold)** bám đúng yêu cầu A3 cho A1; không bịa finding/số liệu. A2 spec PDF (Section 4, cuối Task 3) nhắc "ten-findings / five-ML-questions" nên tôi suy ra A1 có 10 EDA findings + 5 ML questions. | Gửi A1 notebook/output → tôi điền Phần A với cùng cấu trúc như Phần B. |
-| 2 | **Slide của unit không có trong repo.** Notebook chỉ trích 3 nhóm slide cụ thể. | Chỉ dùng slide số mà notebook đã trích (đánh dấu ✔). Chỗ khác ghi **⚠ slide # cần điền**, kèm tên khái niệm/phương pháp để bạn tra nhanh. Không tự bịa số slide. | Điền số slide ở mục 11 (≈10 phút). |
+| 1 | ~~A1 không có trong repo~~ → **đã có** gói A1 (EDA notebook + PDF, solution notebook, mapping, 6 CSV). | Phần A (§5) được viết từ chính gói đó: 8 figures, 10 findings, 5 MLQ + một path JSON/XML → bảng → finding. Con số chủ chốt được 🔁 kiểm lại từ 6 CSV. | Đọc hai cảnh báo ở đầu §5 (PDF vs notebook về "rerun"; hai môi trường Python khác nhau). |
+| 2 | **Slide của unit không có trong repo.** Notebook A2 chỉ trích 3 nhóm slide (Week 7, 8, 11); notebook A1 chỉ trích *applied sessions* Week 2/3/4. | Chỉ dùng số slide/session mà notebook đã trích (✔). Chỗ khác ghi **⚠ slide # cần điền**, kèm tên khái niệm để bạn tra nhanh. Không tự bịa số slide. | Điền số slide ở §11 (≈10 phút). |
 | 3 | "3.1, 3.2, 3.5" mà bạn ghi có thể là **Task 3** (3.1 customer copy, 3.2 original scales, 3.5 recommendation) hoặc **spec 3.1/3.2** (giá & làm tròn). | Chính = Task 3 (cùng danh sách với "spec 3.5, section 1.3"). **§10 (Phụ lục)** phủ spec 3.1/3.2 phòng trường hợp bạn muốn. | Cho tôi biết nếu cần mở rộng. |
 | 4 | Số cell dùng 0-based (chỉ số trong file `.ipynb`). Jupyter không hiển thị chỉ số này. | **Check ID là locator chính** (Ctrl-F `DELIV-07`); cell idx là phụ. | — |
 
@@ -22,7 +28,7 @@
 
 | Tiêu chí | HD cần (rubric §2) | Notes đáp ứng bằng | Mục |
 |---|---|---|---|
-| **G** (nhóm, 10đ) | Câu chuyện A1/A2 mạch lạc; exec summary có finding + recommendation + limitation; evidence **dễ tìm, nhãn chính xác**; chuyển tiếp trong thời gian | Exec-summary seed; "storyline" nối B1→B5; bảng evidence locator; core-vs-reserve để không vượt giờ | §2, §7 |
+| **G** (nhóm, 10đ) | Câu chuyện A1/A2 mạch lạc; exec summary có finding + recommendation + limitation; evidence **dễ tìm, nhãn chính xác**; chuyển tiếp trong thời gian | Exec-summary seed; "storyline" nối A1 → B1…B5; bảng evidence locator; core-vs-reserve để không vượt giờ | §2, §7 |
 | **P** (cá nhân, 10đ) | Giải thích rõ, nhịp tốt, dùng notes/evidence **có chủ đích**, đóng góp substantive, bàn giao mượt | Mỗi phần có "kịch bản nói" (ý chính, không đọc nguyên văn), thứ tự mở evidence, câu signpost | §3, từng mục B |
 | **Q** (cá nhân, 20đ) | Tự giải thích **how & why**, diễn giải evidence đúng **grain–units–limits**; biện minh một **independent check** và kết quả của nó; **thích ứng changed condition**, đề xuất check khả thi, nêu trade-off/uncertainty | Mỗi phần có hộp *Grain–Units–Limits*, *Independent check: establishes / does NOT establish*, và **Q&A drills gồm changed-condition** | từng mục B, §8 |
 | Spec §4 (demonstration) | (1) input/source record + quyết định xử lý; (2) output/finding/so sánh; (3) cách ra kết quả + ý nghĩa giá trị; (4) supporting check làm được/không làm được gì. "Chỉ nói file tồn tại ≠ demonstration" | Mỗi phần có **Demo script 4 bước** đúng 4 gạch đầu dòng này | từng mục B |
@@ -32,7 +38,7 @@
 
 ## 2. Khung thời gian & phân vai (điều chỉnh theo kế hoạch nhóm)
 
-Cả nhóm có **15–20 phút** trình bày + demo, assessor dùng timer (spec §6). Ngân sách đề xuất cho các phần của bạn (≈ 12–13 phút nếu một người làm hết; chia cho nhiều người thì chia theo hàng):
+Cả nhóm có **15–20 phút** trình bày + demo, assessor dùng timer (spec §6). Dưới đây là **tổng ngân sách nếu một người làm hết (≈ 18 phút)** — thực tế nhóm sẽ chia theo hàng, và các thành viên khác còn Executive summary, A2-data cleansing, Reflection. **Chỉ chọn phần được giao**; phần "Reserve" dành cho Q&A.
 
 | Phần | Core (nói) | Reserve (chỉ mở khi bị hỏi) |
 |---|---|---|
@@ -41,7 +47,8 @@ Cả nhóm có **15–20 phút** trình bày + demo, assessor dùng timer (spec 
 | B3 Task 3.1 customer copy | 2 phút | PROF-01f chi tiết, lineage 184 decisions |
 | B4 Task 3.2 original scales | 2 phút | BASE-02 extremes, pair-by-pair identity |
 | B5 Task 3.5 recommendation | 3 phút | DIST-01 đầy đủ, total_paid supplementary |
-| A (A1 EDA & ML) | 3 phút | (điền sau) |
+| A.3 A1 representative path (JSON/XML → bảng → Finding 4–5) | 3 phút | D4–D11, `T3-TEXT-02` (65 ca), Q&A path |
+| A.4–A.6 A1 EDA figure + MLQ (chọn *một* figure và *một* MLQ theo phân công) | 2.5 phút | A.5 (10 findings), toàn bộ MLQ-1…5, A.8 cầu nối A1↔A2 |
 
 > **Nguyên tắc P:** mỗi phần ≤ 5 ý chính trên một "cue card"; mọi con số nói ra phải là con số **đang hiển thị trên màn hình**. Đọc nguyên văn bị coi là bằng chứng yếu (rubric "Notes and explanation").
 >
@@ -54,9 +61,15 @@ Cả nhóm có **15–20 phút** trình bày + demo, assessor dùng timer (spec 
 - *Recommendation:* Với customer profiling: **không** biến đổi phi tuyến, **z-score** cả 3 thuộc tính (`order_count`, `mean_order_value`, `mean_delivery_distance`).
 - *Limitation:* Quyết định loại outlier dựa trên batch guarantee "chỉ `delivery_charges` bị hỏng"; τ chỉ gấp 1.7× residual hợp lệ lớn nhất nên độ vững đến từ *plateau*, không từ biên của τ.
 
+**Seed cho phần A1** (nếu bạn phụ trách exec summary hoặc nối A1 → A2):
+- *Finding (data/results):* Review **chọn lọc theo giá**: 80.3% order có review nhưng chỉ 44.5% item line (7,000/15,739); coverage tăng **27.0% → 63.6%** theo tứ phân vị giá và đúng chiều ở 10/10 category (Finding 4–5).
+- *Finding (validation):* 5,000 orders / 15,739 items / 7,000 reviews được dựng từ hai export tự lặp *và* chồng lấn (ví dụ reviews 3,850 + 3,850 − 700 = 7,000) với **0 xung đột sau normalise**; SKU/order-ref trích từ text khớp khóa có cấu trúc **7,000/7,000**.
+- *Recommendation / next step:* MLQ-2 — dự đoán item nào ít có khả năng được review **≤ 30 ngày sau giao**, trên cohort giao hàng theo thời gian đã "chín", loại mọi thuộc tính từ review.
+- *Limitation:* 44.5% là *export-observed coverage* (cutoff trích xuất chưa xác minh), không phải tỉ lệ phản hồi 30 ngày; 🔁 chỉ ≈ 65% review đến trong ≤ 30 ngày sau giao.
+
 ---
 
-## 3. Mẫu "một phần = một vòng lập luận" (dùng cho mọi mục B)
+## 3. Mẫu "một phần = một vòng lập luận" (dùng cho mọi mục A và B)
 
 ```
 ① ANCHOR      Lý thuyết/phương pháp từ slide → code làm gì tương ứng      (≈20% thời gian)
@@ -73,6 +86,8 @@ Câu signpost gợi ý (EN): *"Let me anchor this in the method from the unit, t
 
 Nói ngắn gọn (≤30 giây) trước hoặc trong phần liên quan. Notebook A3 **không ghi đè** bản A2 đã nộp; chỉ sửa 1.3 (+ phần 1.0 và 2.1 liên quan) và Task 3.1, 3.2, 3.5.
 
+**A1:** gói `Group005_A1_submission` được cung cấp không chứa ghi chú nào về thay đổi cho A3 (EDA PDF cũng ghi *"The full pipeline was not rerun for this summary"*). Nếu bạn có sửa gì ở A1 cho A3 thì thêm một dòng vào bảng dưới (thay đổi, lý do, check); nếu không, nói rõ **"A1 is presented as submitted"**.
+
 | Phần | Thay đổi vật chất | Lý do | Check chứng minh | Quyết định có đổi? |
 |---|---|---|---|---|
 | **1.3** | Confidence của removal so với *các cent charge mà total cho phép* (tìm kiếm MISS-03), cổng = held-out error của mùa | Cổng cũ 0.005 so với charge không làm tròn bỏ qua làm tròn của total → CORD001200 bị `medium` | cả 24 removal `high`; 2.2 tái tính cùng kết quả | **Không** — vẫn 24 đơn |
@@ -85,27 +100,228 @@ Nói ngắn gọn (≤30 giây) trước hoặc trong phần liên quan. Noteboo
 
 ---
 
-## 5. PHẦN A — EDA & ML question của A1 (SCAFFOLD — chờ A1 notebook)
+## 5. PHẦN A — A1: EDA & ML questions (đã grounded từ gói A1 của nhóm)
 
-> ⚠ **Tôi không có dữ liệu A1.** Phần này chỉ cố định *cấu trúc trình bày* và *câu hỏi cần trả lời được*. Điền vào chỗ `[...]` từ A1 notebook của bạn; đừng nói bất cứ điều gì chưa được notebook chứng minh.
+**Nguồn bằng chứng A1:** `Group005_EDA.ipynb` (8 figures, 10 findings, 5 MLQ, output đã lưu), `Group005_EDA.pdf` (13 trang; phần chấm = trang 3–12), `Group005_solution.ipynb` (Task 1–4: parse, reconcile, text, validation `VAL-*`), `Group005_source_to_target_mapping.csv` (111 dòng `MAP-*`), 6 CSV chuẩn hóa trong `outputs/`.
+🔁 = tôi tự tính lại từ 6 CSV chuẩn hóa (không dùng code notebook) và **khớp** notebook/PDF: 5,000 orders / 15,739 item lines / 7,000 reviews / 500 customers; mean–median AUD 2,858–2,410; top-10% orders 26.2% vs customers 17.5%; Gini 0.38 vs 0.22; review phủ 4,017/5,000 orders (80.3%) và 7,000/15,739 item (44.5%); ≤2 sao 1,197 (17.1%); OTIF Nickolson 828/898 = 92.2%, Bakers 88.9%, Thompson 88.6%, failure prevalence 10.62%; coverage theo tứ phân vị giá 27.0% → 38.9% → 48.4% → 63.6%; fan-out ngây thơ làm tổng paid ×**3.54**; SKU/order-ref trích từ text khớp cấu trúc **7,000/7,000**.
 
-**Yêu cầu A3 cho A1 (spec §3):** *"Explain a representative path from JSON/XML to a standardised table and a finding. Include a parsing/reconciliation decision, a text-processing decision and how you checked the result."* Đây là điều assessor sẽ đối chiếu.
+> ⚠ **Hai chỗ lệch cần tránh nói sai:**
+> 1. PDF ghi *"The full pipeline was not rerun for this summary"*, còn `Group005_EDA.ipynb` (ô 1.2) ghi *"reruns end to end from a fresh kernel with 145 of 145 register checks PASS"*. Khi trình bày chỉ nói **"saved PASS results in the solution notebook"** trừ khi bạn vừa Restart & Run All và thấy 145/145.
+> 2. `Group005_solution.ipynb` in ra Python 3.10 / pandas 2.0.1, còn `Group005_EDA.ipynb` in ra Python 3.13.9 / pandas 2.3.3. Hai notebook chạy ở hai môi trường khác nhau (`requirements.txt` chỉ ghi min-version). Nếu bị hỏi về reproducibility: "6 CSV chuẩn hóa là hợp đồng giữa hai notebook; EDA đọc lại đúng 6 CSV".
 
-| Lớp | Cần có | Điền từ A1 |
+### A.1 Yêu cầu A3 cho A1 và cách ta đáp ứng
+
+Spec A3 (§3): *"Explain a representative path from JSON/XML to a standardised table and a finding. Include a parsing/reconciliation decision, a text-processing decision and how you checked the result."* Bảng sau là bản đồ nội dung → yêu cầu:
+
+| Yêu cầu | Đáp ứng bằng | Mục |
 |---|---|---|
-| ① Anchor | Phương pháp EDA/ML từ slide (⚠ slide #) → code section tương ứng | `[EDA step: ...]` `[ML method: ...]` |
-| ② Decisions | Với mỗi quyết định: *what / why (theo đặc điểm dữ liệu A1) / how (cell, check) / alternative bị loại + evidence* | parsing JSON/XML: `[...]` · reconciliation: `[...]` · text-processing: `[...]` |
-| ③ Demo 4 bước | 1 record nguồn (JSON/XML) → bảng chuẩn hóa → 1 finding → 1 check | `[record id]` `[finding]` `[check]` |
-| ④ Boundary | Grain của bảng; đơn vị; limit; **A1 prices không authoritative cho A2** (spec §2) | `[...]` |
+| Đường đi đại diện JSON/XML → bảng chuẩn hóa → finding | **Path "một review → `product_reviews` → coverage theo giá → Finding 4–5 → MLQ-2"** | A.3 |
+| Quyết định parsing/reconciliation | Parse có cấu trúc (không regex) + normalise-trước-khi-so-sánh + reconcile theo business key, **không** precedence | A.3 D1–D3 |
+| Quyết định text-processing | Xóa marker bằng danh sách tường minh, từ chối near-match, emoji theo Unicode block, giữ đa ngôn ngữ | A.3 D4–D7 |
+| Cách kiểm tra kết quả | `T3-TEXT-01/02/04/05`, `VAL-FLOW-*`, `VAL-CONFLICT-01`, `VAL-TEXT-01/02`, `VAL-FK-06`, join audit | A.3 |
+| EDA + ML question (phần bạn chọn) | 8 figures → 10 findings → 5 MLQ, mỗi bước nêu grain/denominator/join/limitation | A.4–A.6 |
 
-**Câu hỏi ML/EDA "chung" assessor có thể hỏi (chuẩn bị câu trả lời từ A1 của bạn):**
-1. Metric nào, baseline nào, vì sao? Held-out hay cross-validation, split có seed/stratify không?
-2. Có leakage không (feature suy ra từ target; fit scaler/vectorizer trước khi split)?
-3. Finding nào của EDA đã *thay đổi* một quyết định (làm sạch / chọn feature / chọn model)?
-4. Check độc lập nào xác nhận kết quả, và nó **không** xác nhận điều gì?
-5. *Changed condition:* nếu dữ liệu có thêm 20% bản ghi lỗi / một lớp hiếm hơn / feature mới, bạn đổi gì và kiểm tra thế nào?
+### A.2 Anchor — phương pháp từ môn học → code A1
 
-→ Khi gửi A1 notebook, tôi sẽ viết Phần A với đúng định dạng của Phần B (≈ cùng độ sâu).
+| Khái niệm | Nguồn trong môn | Trong code A1 |
+|---|---|---|
+| Đọc JSON: `json.load`, làm phẳng `json_normalize(record_path=…)` | ✔ **Week 3 applied session** (notebook ghi rõ) | `T1-P1/P2` |
+| Đọc XML: `BeautifulSoup(…, "lxml-xml")`, `pandas.read_xml(xpath, dtype=str)` | ✔ **Week 2 applied session** | `T1-P1/P2` |
+| Regex dạng verbose `(?x)`, chỉ áp dụng *sau* khi parser đã trả giá trị | ✔ **Week 4 applied session** | `T1-P8`, `Group005_text_functions.py` |
+| Data cleansing / missing-code: giữ sentinel, không đổi nghĩa của missing | ✔ **Week 7 *Data Cleansing*** (slides 27–30, 38–45; notebook A2 dẫn cho missing data — nguyên tắc "missing ≠ giá trị thật" được dùng lại ở A1) | quy ước literal `NaN`, `ASM-05/06/13` |
+| Data validation: structural / content / logical | ✔ **Week 11 *Data Validation*** (slides 4, 22, 27; notebook A2 dẫn — cùng khung structural/content/logical được dùng ở A1) | `VAL-SCHEMA/PK/FK/FLOW/ARITH/TIME/TEXT` |
+| EDA: phân phối, tập trung (Lorenz, Gini), skew, bảng chéo, grain & denominator | ⚠ Week ? slide ? | Figure 1–8 |
+| Ước lượng bất định: Wilson, Newcombe, Bonferroni, bootstrap, Cliff's δ | tài liệu trích trong notebook: Wilson 1927; Newcombe 1998; Dunn 1961; Efron & Tibshirani 1993; Cliff 1993 ✔ · slide ⚠ | Fig 4, 5, 7 |
+| Thiết kế ML question: target, decision-time predictors, validation theo thời gian, baseline, leakage | ⚠ Week ? slide ? | MLQ-1…5 |
+
+---
+
+### A.3 REPRESENTATIVE PATH — từ JSON/XML đến một finding
+
+**Tên path:** *một review* (JSON `$.productReviews[*]` + XML `/OperationsExport/ProductReviews/Review`) → `product_reviews_standardised.csv` → *review coverage theo giá* → **Finding 4–5** → **MLQ-2**.
+**Vì sao chọn path này:** nó đi qua đủ ba thứ assessor đòi (parsing/reconciliation, text-processing, kiểm tra), và finding của nó (review chọn lọc theo giá) là finding mạnh nhất của báo cáo.
+
+**Dòng chảy số liệu (đọc từ trái sang phải; mỗi bước có ID để mở):**
+
+```
+JSON  3,946 review rows (3,850 distinct)  ┐                                   ┌ Finding 4: 44.5% item có review
+                                          ├─ normalise ─ reconcile ─ text ─ ┤ Finding 5: coverage 27.0% → 63.6%
+XML   3,946 review rows (3,850 distinct)  ┘   T1-P4      T2-R1     T3-TEXT   └ theo tứ phân vị giá (Fig 4)
+                   700 key dùng chung → 3,850 + 3,850 − 700 = 7,000 reviews (VAL-FLOW)
+```
+
+#### ① Bước 1–2 — Parse và reconcile (what / why / how / alternative)
+
+| # | Quyết định | What | Why (theo dữ liệu này) | How / evidence | Alternative bị loại |
+|---|---|---|---|---|---|
+| **D1** | **Parse bằng parser có cấu trúc, regex chỉ sau parser** | `json.load` + `json_normalize`; `BeautifulSoup lxml-xml` + `read_xml(dtype=str)` | Spec cấm "parse JSON/XML như text bằng regex". `dtype=str` giữ leading zero và định dạng gốc (XML không có kiểu: 100% `object`; JSON có `bool/int/float`) — **chính sự khác kiểu này là một finding** (`T1-P4`) | `T1-P1`: SHA-256 khớp manifest (JSON 14,139,534 B; XML 17,811,170 B). Ô "regex stays inside its boundary": **chỉ `T1-P8`** dùng regex; `T1-P1/P2` sạch | Regex quét file: mong manh, vi phạm spec |
+| **D2** | **Normalise rồi mới so sánh** | Cùng một đơn viết `AUD 5,287.78` / `14/10/2018 09:28:00` / `Y` (XML) và `5287.78` / `2018-10-14 09:28:00` / `true` (JSON) | So giá trị thô sẽ báo *xung đột giả* ở mọi dòng | Day-first được **chứng minh, không giả định**: thành phần ngày thứ nhất của XML tới **31** (`ASM-01`); `coupon_discount` là *percentage points* (`15%` ≠ `0.15`, `ASM-02`); `""` (JSON) và `<Coupon_Code/>` (XML) là cùng một "không có coupon" (`ASM-04`) | Giả định tháng/ngày hoặc so chuỗi thô |
+| **D3** | **Reconcile theo business key, không có precedence JSON/XML** | `T2-R1 reconcile_canonical`: một giá trị populated có thể điền chỗ trống của bản kia; **hai giá trị populated khác nhau → ghi log và từ chối**, không chọn âm thầm | Cả hai export *tự lặp* (96 cặp review lặp mỗi bên, giống hệt nhau) **và** chồng lấn (700 key chung) ⇒ phải xử lý lặp trong-nguồn *trước*, rồi chồng lấn | 3,850 + 3,850 − 700 = **7,000** (`VAL-FLOW`); **0 xung đột** trong JSON, trong XML, và giữa hai nguồn (`VAL-CONFLICT-01`); file log rỗng là *bằng chứng* vì chạy cùng code path sẽ ghi xung đột | "JSON thắng": che giấu xung đột thật nếu có; concat rồi `drop_duplicates` không kiểm tra |
+
+#### ② Bước 3 — Text-processing (what / why / how / alternative)
+
+| # | Quyết định | What | Why | How / evidence | Alternative bị loại |
+|---|---|---|---|---|---|
+| **D4** | **Xóa marker bằng danh sách tường minh** | Chỉ 7 marker spec công bố (`[SYSTEM]`, `[CATALOGUE]`, `[VERIFIED_PURCHASE]`, `[SOURCE: …]`, `[RATING: …]`, `#verified-buyer`, `@store_support`) | Lời khách như `[NOTE]`/`[URGENT]` phải sống sót | `TXT-18`: `[NOTE] Keep bracketed customer wording` → `[note] keep bracketed customer wording` (chỉ đổi chữ hoa) | Regex chung `\[.*?\]` xóa nhầm lời khách |
+| **D5** | **Từ chối near-match, không cắt cụt** | `_search_bounded` kiểm ký tự hai bên; `-` và `_` thuộc về token | `\b` thôi chưa đủ: trong `SKU-ABC123-extra` dấu `-` là ranh giới → trả `SKU-ABC123` (*lỗi dữ liệu im lặng*) | `TXT-12`: `SKU-ABC123-extra` → `NaN`. Nhóm `near-match` là lớn nhất: **21/65** ca của nhóm | `\bSKU-\w+\b` đơn thuần |
+| **D6** | **Emoji theo Unicode block/sequence, không theo category `So`** | Gồm cờ tag (England/Scotland/Wales = `U+1F3F4` + tag chars + `U+E007F`), variation selector, keycap | `So` còn chứa `©`, `®`, `™`, `°` — ký hiệu văn bản hợp lệ | `Product™` và `25°` sống sót; nhóm `symbol` 10 ca; xóa nguyên chuỗi cờ nên không còn ký tự vô hình | `unicodedata.category == "So"` |
+| **D7** | **Giữ đa ngôn ngữ; Latin-analysis là trường dẫn xuất riêng** | `review_body_clean` giữ chữ không-Latin; `review_body_latin_analysis` = phần Latin; `contains_non_latin_script` theo *Unicode Script property* | Spec: *"A non-ASCII character is not automatically non-Latin"* | `café niño über` → `False` (không phải ngoại ngữ); 🔁 **276** review có chữ không-Latin (ja 61, ar 60, zh 58, hi 50, ru 47) và cờ khớp 276/276 (`VAL-TEXT-11`) | Loại ASCII-only; suy ngôn ngữ từ text (ASM-09: dùng `language_code` có cấu trúc) |
+| **D8** | **Trích tham chiếu *trước* khi làm sạch** | `extract_order_reference`, `extract_product_sku` chạy trên *raw body do parser trả về* | Làm sạch xóa wrapper `Reference: … \| SKU: …`; trích sau sẽ mất nguồn | Wrapper có trong **7,892/7,892** raw body (`T1-P8`) | Trích từ body đã làm sạch |
+
+#### ③ Bước 4 — Từ bảng đến finding (join và denominator)
+
+| # | Quyết định | What | Why | How / evidence |
+|---|---|---|---|---|
+| **D9** | **Aggregate rồi mới join; mọi join đều audit** | `join_audit(left, right, key, validate=…)`: kiểm số dòng vào = ra, 0 unmatched | Order→items là one-to-many: join ngây thơ nhân paid value | Fan-out ngây thơ **×3.54** (EDA §1.3 *Executable EDA safeguards*; 🔁 3.54); mọi join của Fig 2, 3, 5, 7, 8 báo `unmatched = 0` |
+| **D10** | **Đúng denominator cho từng câu hỏi** | Order-level (4,017/5,000 = 80.3%) vs item-level (7,000/15,739 = 44.5%) | Hai mẫu số trả lời hai câu hỏi khác nhau; order-level che khoảng trống ở item-level | `reviews.order_item_id` duy nhất (🔁 max 1 review/item) nên presence-flag không nhân dòng |
+| **D11** | **Làm tròn bằng Python `round`, không phải numpy** | `ASM-14` | numpy `Series.round(2)` bất đồng trên giá trị đúng nửa cent | ≈ **1%** đơn sẽ trượt hợp đồng `order_total` nếu dùng numpy (cùng *họ* bài học với phát hiện Decimal vs float ở A2, §10: biểu diễn nhị phân của nửa cent) |
+
+#### ④ Demo script (4 bước theo spec §4)
+
+1. **Input/source record + quyết định:** hiển thị ca public **TXT-03** (trong `T3-TEXT-01`):
+   `[SOURCE: mobile-app] <p>Caf&eacute; setup was easy 😊</p> Reference: HORD… | SKU: …` → **`café setup was easy`**. Nói: *"entity được decode trước khi strip tag nên `é` sống sót; marker có tham số, emoji, wrapper và social token bị loại; chữ Latin có dấu không bị coi là ngoại ngữ."* Rồi chiếu **TXT-12** (`SKU-ABC123-extra` → `NaN`) làm ví dụ cho D5.
+2. **Output:** một dòng thật của bảng chuẩn hóa — 🔁 review **HREV004637**: `order_id = HORD003326`, `order_item_id = HITM0010461`, `product_id = PRD0986`, `rating = 5`, `value_experience = good_value`, **`extracted_order_reference = HORD003326`**, **`extracted_product_sku = SKU-VEL00986`**; item đó có `unit_price = AUD 419.88` thuộc **tứ phân vị giá 2** (234.12–543.69), nơi coverage là **38.95%**.
+3. **Cách ra & ý nghĩa:** "Tham chiếu trích từ *chữ trong review* trùng với khóa *có cấu trúc* (`order_id`, `product_sku` của `product_id`) — hai đường độc lập cho cùng một liên kết. Item này nằm ở tứ phân vị giá nào quyết định nó thuộc cột nào của Fig 4; cả 15,739 item được gán tứ phân vị bằng `qcut` trên `unit_price` (cutpoints 234.12 / 543.69 / 1,062.27)."
+4. **Supporting check:**
+   - *Establishes:* (i) hàm trích tái tạo **đúng** các số đếm của `T1-P8` qua code path khác (`T3-TEXT-04`: 315 / 7,892 / 7,892 / 2,103 đều khớp); (ii) `T3-TEXT-05`: **7,892/7,892** SKU trích được đúng là SKU của sản phẩm được review — hàm trích *không có quyền truy cập catalogue*, nên khớp hoàn toàn nghĩa là đúng chứ không chỉ "đúng định dạng"; (iii) `VAL-TEXT-01/02`: 7,000/7,000 (🔁 tôi tự kiểm lại 7,000/7,000); (iv) 18/18 ca public + 65/65 ca tự thiết kế.
+   - *Does NOT establish:* ngữ nghĩa của review (PDF: *"Measurement checks do not validate text semantics"*); không chứng minh review đại diện; đường sentinel `NaN` của `clean_narrative_text` **không được dữ liệu thực kích hoạt** (không review nào làm sạch ra rỗng — `ASM-13`), chỉ được các ca test kích hoạt.
+
+#### ⑤ Grain – Units – Limits
+
+- **Grain:** review (7,000) — một review ↔ đúng một `order_item` (grain item line 15,739) ↔ một order (5,000). **Units:** sao 1–5, AUD (giá item), ngày/giờ ISO.
+- **Limits:** Latin-analysis của review *không-Latin có tên sản phẩm Latin* vẫn giữ dấu câu ASCII — 🔁 ví dụ **HREV000008** (ru): `candle edge 428 , . , , . , …` (`ASM-15` chỉ loại dấu câu *wide/fullwidth*); đây là giới hạn đã biết của trường dẫn xuất, không ảnh hưởng `review_body_clean` hay Finding 4–5. Review timestamps đến 2019-02-20 (hợp lệ, `ASM-10`) nên "coverage" là *đã quan sát được trong export*, không phải tỉ lệ phản hồi cuối cùng.
+
+#### ⑥ Q&A drills cho path
+
+| Câu hỏi | Trả lời mẫu |
+|---|---|
+| Vì sao không để JSON ưu tiên hơn XML? | Sau normalise có **0 xung đột** nên precedence là thừa; nếu có xung đột, precedence sẽ che giấu nó. Ta ghi log và từ chối chọn âm thầm (`T2-R1`, `VAL-CONFLICT-01`). |
+| Check nào *độc lập* với code làm sạch? | `T3-TEXT-05`: SKU trích từ text so với `product_sku` của catalogue (7,892/7,892) — hàm trích không biết catalogue. Và `T3-TEXT-04`: đối chiếu với số đếm đo ở `T1-P8` bằng code path khác. |
+| **Changed:** nếu một review có hai wrapper khác nhau hoặc SKU lệch product? | Trích trả `NaN` cho near-match (D5) và `VAL-TEXT-01/02` sẽ FAIL ⇒ giữ dòng nhưng ghi log, không sửa im lặng; check khả thi: đếm review có `extracted_* != structured` (hiện 0/7,000). |
+| **Changed:** nếu XML dùng `MM/DD/YYYY`? | `ASM-01` sẽ sai, nhưng bằng chứng "ngày thứ nhất tới 31" sẽ không còn ⇒ `pd.to_datetime(format="%d/%m/%Y")` raise; vì ta parse với format tường minh nên lỗi lộ ra thay vì đảo âm thầm. |
+| **Changed:** thêm nguồn thứ ba chồng lấn? | `reconcile_canonical` tổng quát hóa (coalesce theo key, log xung đột); phải chạy lại `VAL-FLOW` (số key = số phần tử của hợp các tập key) và đảm bảo hai nguồn mới normalise về cùng quy ước. |
+| Vì sao text-processing quan trọng cho finding? | Nó không đổi phép đếm coverage (dựa trên `order_item_id` có cấu trúc) — nó **xác nhận liên kết** và bảo vệ các phép đo review khác (độ dài, đa ngôn ngữ). Không nói quá. |
+
+---
+
+### A.4 EDA — 8 figures: grain, denominator, join, kết quả, giới hạn
+
+Cả 8 figure đều khai báo **question / observation unit & denominator / tables & join keys / interpretation / limitation** (đúng mẫu — cứ dùng mẫu này để nói).
+
+| Fig | Loại | Grain / denominator | Join | Kết quả chính | Giới hạn nêu sẵn | Finding |
+|---|---|---|---|---|---|---|
+| 1 | Univariate | order n=5,000; panel khách n=500 | không join (khách = aggregate) | mean 2,858 > median 2,410; top-10% orders **26.2%** vs khách **17.5%**; Gini **0.38 → 0.22** | 1 năm; paid ≠ profit | F1 |
+| 2 | Multivariate | order n=5,000; mỗi ô: median + n | items→order one-to-one | median gross 627 → 8,739 giữa hai góc; log-variance: giá gia quyền **57.0%**, số lượng **32.1%**, 2·cov **10.9%** | đồng nhất thức đại số, không phải độ quan trọng; không có bất định | F2 |
+| 3 | Composition | item lines theo category | items→products→orders (many-to-one; 15,739 vào/ra, 0 unmatched) | doanh số 512k (Accessory) → 2.57M (Laptop) ≈ 5×; contribution-rate **28.6–33.1%** | proxy; GST/cost basis chưa xác minh | F3 |
+| 4 | Multivariate/review | A: order trong strata số dòng; B: item theo tứ phân vị giá | aggregate trước, join one-to-one | 3-line orders: **74.2% → 92.0%**; item: **27.0% → 63.6%**; đúng chiều ở **10/10** category | hai kiểm tra riêng, không phải điều chỉnh đồng thời | F4, F5 |
+| 5 | Bivariate/review | review (7,000), cluster theo order | reviews→orders, reviews→deliveries many-to-one | ≥4 sao **65.85% vs 65.87%** nhưng 5 sao **34.5% vs 21.8%** (+12.7 pp); mean gap **0.179** (CI [0.092, 0.267]); Cliff's δ **0.093** | nhãn value đồng thời với rating; không xử lý phụ thuộc khách lặp | F6, F7 |
+| 6 | Temporal | đơn/ngày (kể cả ngày 0), 365 ngày | không join | weekday **13.50–13.85**; tháng **12.80 (Sep) – 14.94 (Aug)**; SD ngày **3.55**, IQR 5 | 1 chu kỳ năm; trung bình phẳng ≠ có thể dự báo | F8 |
+| 7 | Delivery ops | giao hàng n=5,000 | deliveries→orders one-to-one | Nickolson **92.2%** (n=898) vs **88.8%** (4,102): **+3.44 pp**, khoảng đồng thời [0.77, 5.70]; omnibus p=0.0096 | `nearest_warehouse` ≠ nơi xuất kho; chưa hiệu chỉnh khoảng cách/địa lý | F9 |
+| 8 | Delivery ops | giao hàng n=5,000; recovery = Σcharge/Σcost | one-to-one | cả 5,000 có contribution ≥ 0; tổng AUD 15,095, median 2.74; Standard **1.27×**, Express **1.28×** | chi phí ghi nhận thiếu (nhân công, đóng gói, hoàn, overhead) | F10 |
+
+#### A.4.1 Hai figure đáng "đứng nói" (chọn theo phân công của bạn)
+
+**Fig 1 / Finding 1 — "Giao dịch lớn ≠ phụ thuộc vào nhóm khách tinh hoa"**
+
+| Lớp | Nội dung |
+|---|---|
+| ① Anchor | Phân phối lệch phải → báo cả mean *và* median; Lorenz + Gini là thước đo **tập trung**; tập trung phụ thuộc **grain** |
+| ② Decisions | **Grain**: đơn (n=5,000) vs khách (n=500) — *"đúng mẫu số cho câu hỏi resilience là khách, không phải đơn"*. Gini bằng công thức `2Σ i·xᵢ /(nΣx) − (n+1)/n` trên mảng đã sắp xếp (🔁 0.38 / 0.22). `order_total` = paid (net coupon, gồm delivery và GST) — không phải doanh thu hàng hóa. |
+| ③ Demo | Input: bảng `orders` (5,000). Output: panel (a) mean 2,858 vs median 2,410, skew; panel (b) hai đường Lorenz. Cách ra: sắp xếp tăng dần, tích lũy. Ý nghĩa: **26.2% → 17.5%** — biến thiên giao dịch không nên bị diễn giải thành chiến lược VIP. Check: results register tính lại từ CSV trong notebook (🔁 khớp). *Không chứng minh:* tính bền theo thời gian; 1 năm. |
+| ④ Boundary | Grain = order / customer; unit = AUD paid; limit = 1 năm, paid ≠ profit |
+| ⑤ Q&A | *"Gini 0.22 là thấp hay cao?"* → Không có ngưỡng tuyệt đối; so *cùng dữ liệu hai grain* (0.38 vs 0.22) là ý chính. **Changed:** *"Nếu 5% khách chiếm một nửa doanh thu?"* → Gini khách sẽ tăng mạnh, top-10% share lên cao; kết luận F1 đảo; check: tính lại `c_top10` và Lorenz khách. *"Có dùng log?"* → Chỉ để *nhìn* phân phối; Gini tính trên giá trị gốc vì nó đo bất bình đẳng của AUD. |
+
+**Fig 7 / Finding 9 — OTIF theo kho**
+
+| Lớp | Nội dung |
+|---|---|
+| ① Anchor | Tỉ lệ nhị phân → **khoảng Wilson**; so hai tỉ lệ → **Newcombe**; so *nhiều* nhóm với "phần còn lại" → **Bonferroni** (z tại α/(2·3)); omnibus **χ²** |
+| ② Decisions | Mỗi kho vs *tất cả còn lại*, Newcombe = hiệu hai cận Wilson, **Bonferroni làm rộng khoảng** cho họ 3 so sánh (z = Φ⁻¹(1 − 0.05/6)). Kiểm tra case-mix: OTIF trong từng ô kho×service + chuẩn hóa theo cơ cấu service chung (Bakers 0.8891, **Nickolson 0.9221**, Thompson 0.8862 sau chuẩn hóa). Ghi rõ OTIF = "không trễ" trong export này (assert `ontime == (delay_days ≤ 0)`). |
+| ③ Demo | Input: `deliveries` ⨝ `orders.nearest_warehouse` (5,000 vào, 5,000 ra, 0 unmatched). Output: Fig 7 ba panel + bảng. Ý nghĩa: Nickolson hơn **3.44 điểm %**; chỉ khoảng của Nickolson **không chứa 0** (Bakers −0.76 [−2.96, 1.36]; Thompson −1.33 [−3.49, 0.77]); lợi thế còn trong Express (+4.54 pp) và Standard (+3.21 pp). Check: service-mix standardisation hầu như không đổi tỉ lệ. *Không chứng minh:* nhân quả/hiệu quả vận hành của Nickolson. |
+| ④ Boundary | Grain = giao hàng; limit: `nearest_warehouse` ≠ nơi xuất kho; khoảng cách (`shipping_distance_km`) **có sẵn nhưng chưa hiệu chỉnh**; khách lặp vi phạm độc lập |
+| ⑤ Q&A | *"Tại sao Bonferroni?"* → 3 so sánh "kho vs phần còn lại" được nhìn cùng lúc nên kiểm soát family-wise; nhưng nó **không** xử lý confounding hay selection. **Changed:** *"Nếu Nickolson gần khách hơn?"* → khoảng cách là confounder chưa hiệu chỉnh — đúng là hạn chế đã nêu; check khả thi: phân tầng theo tứ phân vị `shipping_distance_km` hoặc logistic regression OTIF ~ kho + service + distance, so sánh hệ số kho; đây là chính nội dung **MLQ-5**. *"Tại sao không dùng chỉ p-value?"* → p=0.0096 chỉ nói *có khác nhau ở đâu đó*; ta cần *kho nào, bao nhiêu, bất định ra sao*. |
+
+> Nếu cần mở rộng, Fig 4 (coverage) đã được trình bày trọn trong **A.3** (path); Fig 5 xem A.5 Finding 6.
+
+---
+
+### A.5 Mười findings — bảng tra nhanh cho Q&A
+
+| # | Phát biểu (rút gọn) | Số liệu đỡ | Evidence | MLQ |
+|---|---|---|---|---|
+| 1 | Giao dịch lớn không chứng minh phụ thuộc vào nhóm khách ít người | 26.2% vs 17.5%; Gini 0.38 → 0.22 | Fig 1 | 1 |
+| 2 | Giá gia quyền là phần cấu trúc lớn hơn của biến thiên giá trị giỏ — nhưng đây là đồng nhất thức | 57.0 / 32.1 / 10.9% | Fig 1–2 | 1 |
+| 3 | Tầm quan trọng thương mại = quy mô × tỉ suất; không cái nào đứng riêng | 5× về doanh số; rate 28.6–33.1% | Fig 2–3 | 1 |
+| 4 | Coverage cấp order (80.3%) che khoảng trống cấp item (44.5%) | 4,017/5,000; 7,000/15,739; export-observed, chưa phải tỉ lệ phản hồi cuối | Fig 4 | 2 |
+| 5 | Review chọn lọc theo giá, qua hai kiểm tra riêng | 74.2% → 92.0% (3-line); 27.0% → 63.6%; 10/10 category | Fig 4 | 2 |
+| 6 | Nhị phân "hài lòng" che dịch chuyển ordinal | ≥4 sao 65.85% vs 65.87%; 5 sao 34.5% vs 21.8%; gap 0.179; δ 0.093 | Fig 5 | 3 |
+| 7 | Chọn lọc review và cường độ rating là hai target khác nhau | ≤2 sao: 17.1% của review nhưng 7.6% của item mua | Fig 4–5 | 2, 3 |
+| 8 | Trung bình weekday phẳng ≠ khối lượng dự báo được | 13.50–13.85; SD 3.55; IQR 5 | Fig 6 | 4 |
+| 9 | Chênh OTIF theo kho còn sau kiểm tra cơ cấu service → ưu tiên điều tra | +3.44 pp; [0.77, 5.70]; +4.54/+3.21 | Fig 7 | 5 |
+| 10 | Thu hồi chi phí giao hàng và độ tin cậy là hai chiều khác nhau | 15,095; 1.27× vs 1.28× | Fig 7–8 | 5 |
+
+**Ba chủ đề (Conclusion của báo cáo):** (i) tập trung nhẹ đi ở grain khách/danh mục (F1–3); (ii) bằng chứng review **chọn lọc có hệ thống** — đại diện, không phải rating trung bình, là rủi ro phân tích chính (F4–7); (iii) vận hành giao hàng có hai chiều tách biệt; chênh theo kho là *liên hệ*, chưa phải hiệu ứng cơ sở (F8–10).
+
+---
+
+### A.6 Năm ML questions — thiết kế và bảo vệ
+
+Mỗi MLQ có đủ 7 phần: **EDA evidence → business decision → problem type & unit → target → decision-time predictors → validation & metric → leakage/deployment risk**. Năm câu phủ **4 loại bài toán** (hồi quy MLQ-1; phân loại nhị phân MLQ-2, MLQ-5; ordinal hai giai đoạn MLQ-3; dự báo chuỗi thời gian đếm MLQ-4). Ghi nhớ nguyên tắc chung: **chỉ dùng predictor có sẵn tại thời điểm quyết định; validation theo thời gian; baseline tường minh; chỉ số theo ngân sách can thiệp**. *A1 EDA không huấn luyện model* (limitation "Prediction untested").
+
+| MLQ | Loại / unit | Target | Validation | Leakage guard chính |
+|---|---|---|---|---|
+| 1 | Hồi quy / customer-month | tổng paid tháng kế (kể cả 0) | rolling monthly origin; MAE & bias vs *previous-month* và *trailing-3-month mean*; precision@K cho "top-decile" | loại giao dịch tương lai; 🔁 **2,587/6,000** customer-month = 0 (zero-heavy) |
+| 2 | Nhị phân / item line đã giao | có review ≤ 30 ngày sau giao | cohort giao hàng theo thời gian, mỗi order trong một partition, label đã "chín"; log-loss, calibration, PR-AUC vs prevalence | không gán nhãn "không phản hồi" cho quan sát chưa chín; loại mọi thuộc tính từ review |
+| 3 | Hai giai đoạn: A = MLQ-2, B = rating ordinal | rủi ro joint = P(review ≤30d) × P(rating ≤ 2 \| review) | RPS cho ordinal; calibration, PR-AUC cho ≤2 sao | stage B chỉ huấn luyện trên người review ⇒ rủi ro *quan sát được*, không phải bất mãn tiềm ẩn; loại `value_experience`, rating, text |
+| 4 | Chuỗi thời gian đếm / ngày | số đơn ngày kế + khoảng dự báo | expanding window 1 bước; MAE vs *historical mean* và *weekly seasonal-naive*; coverage & độ rộng khoảng (vd 90%) | không random split, không cửa sổ căn giữa; 1 năm không xác lập mùa vụ |
+| 5 | Nhị phân / order lúc dispatch | OTIF failure (`False`) | rolling theo thời gian; PR-AUC vs prevalence **10.62%**; so có/không `warehouse` | loại `delay_days`, `delivered_date`; `nearest_warehouse` có thể không là nơi xuất kho |
+
+#### A.6.1 MLQ-2 (gắn với path A.3) và MLQ-5 (gắn với Fig 7) — đào sâu
+
+| Lớp | MLQ-2: item lines nào ít khả năng được review ≤ 30 ngày? | MLQ-5: dispatch-time info có nhận diện OTIF failure? |
+|---|---|---|
+| ① Anchor | Bài toán phân loại nhị phân mất cân bằng + selection; **PR-AUC & calibration** thay vì accuracy | Phân loại nhị phân, imbalance 10.62%; kiểm tra *giá trị tăng thêm* của một feature bằng so sánh có/không feature |
+| ② Decisions | **Unit = item line** (vì review gắn với item, không phải order); **label** = review ≤30 ngày sau giao (neo vào *giao hàng*, không phải ngày đặt: median lag 29.0 ngày vs **23.5 ngày**); **chỉ** predictor tại lúc giao (giá, category, quantity, line count, order value, service, warehouse, delivery outcome); câu hỏi con *"giá có cải thiện dự đoán vượt basket size và category không?"* ⇒ so có/không giá | **Unit = order lúc dispatch**; target `on_time_in_full = False`; predictors dispatch-time (service, shipping distance, promised lead time, basket, order value, warehouse); câu hỏi con *"warehouse có thêm giá trị ổn định sau khi hiệu chỉnh case mix?"* |
+| ③ Evidence & numbers | Fig 4: 27.0% → 63.6%, 10/10 category; **44.5% không phải tỉ lệ 30 ngày**. 🔁 Chỉ ≈ **64.9%** review đến trong ≤ 30 ngày sau giao (p90 = 41.6 ngày, max 45.8) ⇒ prevalence 30 ngày tối đa ≈ 0.649 × 44.5% ≈ **29%** của item line (*phép tính của tôi, nhãn "derived"*) | Fig 7: +3.44 pp, khoảng [0.77, 5.70]; lợi thế còn trong cả hai service; **khoảng cách chưa được hiệu chỉnh** ở Fig 7 |
+| ④ Validation | Cohort giao theo thời gian; **label chín** (cần đã xác minh *extraction cutoff*). Dữ liệu: giao đến 2019-01-10, review đến 2019-02-20 ⇒ *nếu* cutoff ≥ 2019-02-20 thì mọi giao hàng đều có đủ 30 ngày (2019-01-10 + 30 = 2019-02-09) — nhưng cutoff **chưa được xác minh**, nên báo cáo không gán nhãn "non-response" | Rolling chronological; định nghĩa quy ước thời điểm dispatch (trường giao hàng chỉ có *ngày*); so sánh với/không warehouse; PR-AUC vs prevalence từng kỳ; recall/precision tại ngân sách can thiệp |
+| ⑤ Leakage & rủi ro | Loại thuộc tính từ review; mỗi order ở một partition (item cùng order tương quan); low propensity ≠ responsiveness | Loại delay thực tế, ngày giao, sự kiện sau dispatch; `nearest_warehouse` ≠ nơi xuất kho; hiệu quả không bằng nhân quả |
+
+**Q&A drills cho ML:**
+
+| Câu hỏi | Trả lời mẫu |
+|---|---|
+| Vì sao không random split? | Dữ liệu là chuỗi thời gian + item cùng order phụ thuộc nhau; random split làm rò thông tin tương lai và các item cùng order ở hai phía. Dùng cohort theo thời gian, mỗi order một partition. |
+| Vì sao PR-AUC thay vì ROC-AUC/accuracy? | OTIF failure chỉ 10.62%: accuracy 89.4% đạt được bằng cách luôn đoán "đúng hạn" 🔁 (1 − 0.1062). PR-AUC nhạy với lớp hiếm; thêm calibration và recall/precision tại ngân sách vì quyết định kinh doanh là *xếp hạng trong ngân sách*. |
+| 44.5% có dùng làm baseline được không? | Không: đó là tỉ lệ *đã quan sát trong export*, không phải response 30 ngày; 🔁 chỉ ≈65% review đến ≤30 ngày nên prevalence 30 ngày thấp hơn (~29%); phải xác minh cutoff trước khi gán nhãn. |
+| **Changed:** nếu cutoff trích xuất sớm hơn (ví dụ 2019-01-31)? | Các giao hàng cuối kỳ chưa đủ 30 ngày → loại khỏi tập huấn luyện (hoặc dùng survival/censoring) thay vì gán nhãn 0; kiểm tra: phân phối lag theo tuần giao. |
+| **Changed:** nếu thêm text của review làm feature? | Rò: review text chỉ tồn tại *sau* sự kiện; chỉ hợp lệ cho mô hình hậu-review (stage B không áp dụng cho quyết định tại giao hàng). |
+| **Changed:** nếu muốn kiểm tra tác động nhân quả của warehouse? | Không thể từ dữ liệu quan sát này: cần xác minh dispatch lineage và hiệu chỉnh case-mix; hoặc thí nghiệm/natural experiment. Chỉ có thể nói "association". |
+| MLQ-1 có nhiều số 0 — xử lý thế nào? | Target gồm cả tháng không chi (2,587/6,000), nên so với baseline "tháng trước" và "trung bình 3 tháng"; có thể tách hai giai đoạn (có mua? → bao nhiêu?) nếu MAE bị zero-inflation chi phối. |
+
+---
+
+### A.7 Limitations chủ động nêu cho A1 (chọn 1–2)
+
+1. **Review chọn lọc + follow-up chưa xác minh**: 44.5% là *observed coverage*, không phải response cuối cùng; ≤2 sao = 17.1% của review nhưng 7.6% của item mua — *không* phải tỉ lệ bất mãn.
+2. **Warehouse effect là liên hệ**: `nearest_warehouse` ≠ nơi xuất kho; chưa hiệu chỉnh khoảng cách; khách lặp ⇒ khoảng bất định tối thiểu; Bonferroni xử lý đa so sánh, không xử lý confounding.
+3. **Chỉ số thương mại là proxy**: contribution = revenue thực sau phân bổ coupon − `unit_cost × quantity`; GST/chi phí chưa xác minh (phần dư làm tròn gộp AUD 0.136).
+4. **Một năm dữ liệu (2018)**: không tách được mùa vụ, xu hướng, khuyến mãi.
+5. **EDA không huấn luyện model**: 5 MLQ là *đề xuất leakage-safe*, chưa kiểm chứng hiệu năng.
+6. **Dependence**: bootstrap theo order, chưa theo khách ⇒ khoảng tin cậy có thể hẹp hơn thực tế.
+
+### A.8 Cầu nối A1 ↔ A2 (để G có "một câu chuyện", nhưng không nói quá)
+
+A3 spec §2: *nếu so sánh/kết hợp A1 và A2 phải kiểm tra key, grain, kỳ, đơn vị, nghĩa trước; batch A1 và A2 không tự nhiên là quần thể so sánh được; giá catalogue A1 không phải giá A2.* Vì vậy cầu nối là **kỷ luật phương pháp**, không phải số liệu hợp nhất:
+
+| A1 (lịch sử 2018) | A2 (hiện tại 2019) | Cùng một nguyên tắc |
+|---|---|---|
+| Aggregate trước join, `join_audit` (fan-out ×3.54) | Gộp 3 CSV đã nộp rồi mới aggregate sang khách; `PROF-02` đối soát đơn–khách–tiền | **Đúng grain trước khi kết luận** |
+| 44.5% order-level vs item-level; denominator khác câu hỏi khác | Residual vs raw charge: "charge lớn" ≠ "residual lớn" | **Đúng đại lượng so sánh** |
+| `T3-TEXT-05` (đối chiếu độc lập với catalogue) | `DELIV-08` (đối chiếu độc lập với `order_total`), `PROF-01f` | **Check độc lập với code sửa/làm sạch** |
+| Validation register 145 check; `VAL-CONFLICT-01` | `READBACK`, `AUDIT_EXPORT`, `CLAIMS-13` | **Validation tách khỏi transformation** |
+| MLQ: validation theo thời gian, predictor tại thời điểm quyết định | DELIV: split có seed, held-out ≠ in-sample | **Không rò thông tin khi đánh giá** |
+
+*Q&A:* **"Bạn có thể áp mô hình biểu giá A2 lên đơn A1 không?"** → Không tự động: khác kỳ (2018 vs 2019), tập khách/đơn khác, A1 không cung cấp cùng bộ trường biểu giá được xác nhận cho A2, và spec cảnh báo giá/quần thể không so sánh được. Check khả thi: so sánh theo *key, grain, kỳ, đơn vị* trước; nếu muốn thử, chỉ như kiểm tra thăm dò, không dùng để kết luận.
 
 ---
 
@@ -190,7 +406,7 @@ Nói ngắn gọn (≤30 giây) trước hoặc trong phần liên quan. Noteboo
 |---|---|
 | **Contextual (conditional) outlier**: bất thường *tùy theo ngữ cảnh* (mùa, khoảng cách, cờ), không phải giá trị thô | Dùng **residual** từ mô hình mùa thay vì charge thô |
 | Outlier score từ **linear model residual** | `delivery_residuals` |
-| **Modified z-score / Hampel identifier** (Iglewicz & Hoaglin 1993; Hampel 1974 ✔ notebook references): `|e − median| / (1.4826·MAD) > 3.5` | `residual_threshold` → τ = 3.5 × 1.4826 × MAD |
+| **Modified z-score / Hampel identifier** (Iglewicz & Hoaglin 1993; Hampel 1974 ✔ notebook references): `\|e − median\| / (1.4826·MAD) > 3.5` | `residual_threshold` → τ = 3.5 × 1.4826 × MAD |
 | Ước lượng robust (median/MAD) để outlier không tự làm phồng thang đo | m, MAD tính **chỉ từ 105 residual held-out sạch** |
 | Validation: structural, content, logical checks (Week 11 *Data Validation*, slides 4, 22, 27 ✔) | DELIV-08 (logical: order_total identity), DELIV-09 (retained), read-back 2.2 |
 
@@ -411,7 +627,10 @@ Nói ngắn gọn (≤30 giây) trước hoặc trong phần liên quan. Noteboo
 ## 7. Storyline nối các phần (cho tiêu chí G: coherence)
 
 ```
-EDA: raw charge KHÔNG phân biệt được lỗi (charge ~ khoảng cách, mùa, cờ)  [EDA-1]
+A1: dựng bảng đáng tin (grain, khóa, đơn vị; reconcile 0 xung đột; join audit) → EDA cho thấy trung bình/tỉ lệ
+    sai khi nhầm denominator (order 80.3% vs item 44.5%; order vs customer Gini) → MLQ validation theo thời gian
+   ⇣ (cùng kỷ luật, không hợp nhất số liệu — A3 spec §2)
+A2 EDA: raw charge KHÔNG phân biệt được lỗi (charge ~ khoảng cách, mùa, cờ)  [EDA-1]
    → B1: mô hình hóa điều kiện: 4 OLS theo mùa, held-out R² ≈ 1, MAE = sàn cent     (thước đo "kỳ vọng")
    → B2: residual = thước đo bất thường; τ từ residual sạch; 24 đơn; plateau + total identity
    → output: outlier_clean 476 đơn + audit 24 `high`
@@ -420,7 +639,9 @@ EDA: raw charge KHÔNG phân biệt được lỗi (charge ~ khoảng cách, mù
    → B5: z-score, không phi tuyến — đo bằng thay đổi láng giềng; RERUN từ đĩa 16/16
 ```
 
-**Câu chuyển tiếp mẫu (EN):** *"So far the model told us what a delivery charge should be; the next step shows how that decision flows into the customer profiles we compare."*
+**Câu chuyển tiếp mẫu (EN):**
+- A1 → A2: *"In A1 we learned that the denominator and the grain decide what a number means. In A2 we apply the same discipline to a different question: which delivery charges are wrong given what they should be."*
+- B2 → B3: *"So far the model told us what a delivery charge should be; the next step shows how that decision flows into the customer profiles we compare."*
 
 ---
 
@@ -436,6 +657,9 @@ Mẫu trả lời 4 bước: **(1)** nói điều gì thay đổi và nó phá g
 | Bỏ held-out, dùng toàn bộ 420 để fit | Đánh giá độc lập | Alt (b): hệ số lệch < 0.001 nhưng mất evidence độc lập | Spec: in-sample không phải evidence |
 | Khách mới xuất hiện | z-score refit | Dùng μ, σ đóng băng của REC-01 | Phân phối có thể trôi → theo dõi |
 | Batch mới có nhiễu lớn hơn | Nhiễu = làm tròn cent | Tính lại MAD; xem phân phối residual; robust regression | τ lớn hơn, độ nhạy giảm |
+| (A1) Chia train/test ngẫu nhiên cho MLQ-2/5 | Quan sát độc lập; không rò thời gian | Thay bằng cohort giao hàng theo thời gian, mỗi order một partition; so MAE/PR-AUC hai cách để *đo* mức rò | Số liệu đẹp hơn nhưng lạc quan |
+| (A1) Cutoff trích xuất sớm hơn 2019-02-20 | Label 30 ngày đã chín cho mọi giao hàng | Loại giao hàng chưa đủ 30 ngày hoặc dùng censoring; xem lag theo tuần giao | Mất dữ liệu cuối kỳ nhưng không gán nhãn sai |
+| (A1) Nguồn XML thứ ba / định dạng ngày khác | Quy ước chuẩn hóa dùng chung | Parse với `format` tường minh; chạy lại `VAL-FLOW`, `VAL-CONFLICT-01` | Chi phí normalise thêm một nguồn |
 
 ---
 
@@ -476,6 +700,10 @@ Mẫu trả lời 4 bước: **(1)** nói điều gì thay đổi và nó phá g
 | EDA: skewness, kurtosis, IQR fence, correlation | ⚠ | Week ? slide ? |
 | z-score vs min-max normalisation | ⚠ *(ngoài slide: Han, Kamber & Pei 2011 §3.5.2 ✔)* | Week ? slide ? |
 | Feature redundancy / correlation analysis | ⚠ *(Han, Kamber & Pei ✔)* | Week ? slide ? |
+| A1 — đọc JSON / XML, làm phẳng | ✔ Week 3 / Week 2 *applied sessions* (notebook A1 dẫn) | slide # nếu có |
+| A1 — regex verbose, bounded patterns | ✔ Week 4 *applied session* (notebook A1 dẫn) | slide # nếu có |
+| A1 — khoảng tin cậy Wilson / Newcombe / bootstrap, Cliff's δ | ⚠ *(ngoài slide: Wilson 1927; Newcombe 1998; Dunn 1961; Efron & Tibshirani 1993; Cliff 1993 ✔ trong notebook A1)* | Week ? slide ? |
+| A1 — thiết kế ML question (target, leakage, validation theo thời gian, baseline, PR-AUC) | ⚠ | Week ? slide ? |
 
 Khi có số slide, thêm vào cột "① Anchor" của từng mục. **Quy tắc:** nói "slide X" chỉ khi bạn đã mở slide đó và xác nhận nội dung.
 
@@ -483,7 +711,9 @@ Khi có số slide, thêm vào cột "① Anchor" của từng mục. **Quy tắ
 
 ## 12. Pre-flight checklist (spec §6, §8, §9, rubric §4)
 
-- [ ] Mở sẵn: notebook (đã Run All, output hiển thị), `Group005_*_clean.csv`, `audit_log.csv`; **bản local + backup** (file không trình chiếu được = không được tính).
+- [ ] Mở sẵn **A2**: `Group005_solution_A3_revised.ipynb` (đã Run All, output hiển thị), `Group005_*_clean.csv`, `audit_log.csv`; **bản local + backup** (file không trình chiếu được = không được tính).
+- [ ] Mở sẵn **A1**: `Group005_EDA.ipynb` (output hiển thị), `Group005_EDA.pdf` (trang 3–12 là phần chấm), `Group005_solution.ipynb` (ô `T1-P*`, `T2-R1`, `T3-TEXT-*`, `VAL-*`), `Group005_source_to_target_mapping.csv` (lọc `MAP-product_reviews-*`), 6 CSV `outputs/`. Chuẩn bị sẵn *vị trí cuộn* tới `T2-R1`, `T3-TEXT-01/02/04/05`, Figure 4/5/7 để không phải tìm.
+- [ ] A1: quyết định *trước* sẽ nói gì về "rerun" (xem cảnh báo đầu §5). Chỉ nói "saved PASS results" trừ khi bạn vừa Restart & Run All và thấy 145/145.
 - [ ] Màn hình demo thấy được với assessor; tắt AI, messaging, thiết bị khác (cấm *live AI* trong presentation/Q&A).
 - [ ] Mỗi người: có cue card ≤ 5 ý; biết cell nào cần mở (Ctrl-F check ID); nói con số *đang hiển thị*.
 - [ ] Mỗi người trả lời câu hỏi được chỉ định; đồng đội chỉ trả lời khi được mời. Nếu im lặng 1 phút, assessor sẽ chuyển câu.
@@ -493,4 +723,4 @@ Khi có số slide, thêm vào cột "① Anchor" của từng mục. **Quy tắ
 
 ---
 
-*Ghi chú nguồn số liệu: các số trong B1–B5 được trích từ output đã lưu của `Group005_solution_A3_revised.ipynb` (DELIV-01…11, PROF-01…03, BASE-01…03, SCALE-01…03, NONLIN-01, EVID-01, DIST-01, REC-01, RERUN-01). Những số đánh dấu 🔁 do tôi tự tính lại độc lập bằng NumPy từ CSV gốc; chúng không thay thế evidence trong notebook.*
+*Ghi chú nguồn số liệu: các số trong B1–B5 được trích từ output đã lưu của `Group005_solution_A3_revised.ipynb` (DELIV-01…11, PROF-01…03, BASE-01…03, SCALE-01…03, NONLIN-01, EVID-01, DIST-01, REC-01, RERUN-01); các số trong Phần A từ `Group005_EDA.ipynb`/`Group005_EDA.pdf`/`Group005_solution.ipynb` (T1-P*, T2-R1, T3-TEXT-*, VAL-*, Fig 1–8, MLQ-1…5). Những số đánh dấu 🔁 do tôi tự tính lại độc lập (NumPy/pandas) từ CSV; chúng không thay thế evidence trong notebook. Các phép "derived" (ví dụ ≈29% item line được review ≤30 ngày) là suy luận của tôi từ số 🔁, không có trong notebook A1.*
