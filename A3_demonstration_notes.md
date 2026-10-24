@@ -728,149 +728,144 @@ Khi có số slide, thêm vào cột "① Anchor" của từng mục. **Quy tắ
 
 ## 13. Hai flow đề xuất để chia phần thuyết trình (5 người, giảm phân mảnh)
 
-*Cập nhật theo phân công mới: **Minh** Block 1 + 1.1 + 2.1 · **Tim & Tiansheng** cùng 3.2–3.4 · **Sally** Block 4 (+ 1.3) + 3.1 + 3.5 · **Riley** Block 5 + 1.4 + 2.2 (+ A1 EDA/ML).*
+*Phân công hiện tại — **A1:** Minh = Task 1 + Task 3 · Tim & Tiansheng = Task 2 + Task 4 · Sally & Riley = EDA + ML questions. **A2:** Minh Block 1 + 1.1 + 2.1 · Tim 1.0 + 3.2–3.3 · Tiansheng 1.2 + 3.4 · Sally Block 4 (+ 1.3) + 3.1 + 3.5 · Riley Block 5 + 1.4 + 2.2.*
+
+**Bốn Task của A1 trong `Group005_solution.ipynb`:** Task 1 = parse & profile hai nguồn + source-to-target mapping (`T1-P*`, `T1-M1`) · Task 2 = sáu bảng quan hệ chuẩn hóa, reconcile (`T2-R1…T2-O1`) · Task 3 = hàm text/regex (`T3-TEXT-*`) · Task 4 = validation register (`VAL-*`). EDA/ML là Task 5–6 (Riley, Sally).
 
 ### 13.0 Ràng buộc từ marking criteria
 
 | Ràng buộc | Nguồn | Hệ quả thiết kế |
 |---|---|---|
-| Mở đầu bằng **tóm tắt đóng góp, vai trò, task từng thành viên** | A3 spec §4 | Slide roster 30–40 s ở lượt đầu (§13.5) |
-| Mọi thành viên phải **giải thích một decision / result / supporting check** (không chỉ giới thiệu hay đổi slide); ai cũng hiểu workflow chung | A3 spec §3 | Mỗi người có ≥ 1 lượt "substantive" mang quyết định của chính mình |
-| 5 phần: Executive summary · A1 · A2-data cleansing · A2-Transformation · Reflection; **thứ tự được phép đổi** | A3 spec §3 | Đủ 5 phần, thứ tự điều chỉnh theo logic |
-| **15–20 phút** trình bày + demo, có timer | A3 spec §6 | Thiết kế ≈ 18 phút, đệm ≥ 1.5 phút |
-| P: chuyển giao mượt, tìm evidence không bị mất chỗ; **không cần chia đều giây** | Rubric P | Lượt dài/ngắn khác nhau được; chốt tab trước |
-| G: câu chuyện A1/A2 mạch lạc; evidence dễ tìm; chuyển tiếp trong thời gian | Rubric G | Hand-over bằng *một câu hỏi* |
-| Q: câu hỏi riêng cho từng người; đồng đội chỉ trả lời khi được mời | A3 spec §6, Rubric Q | Người không nói A1 vẫn cần "A1 one-pager" (§13.6) |
+| Mở đầu bằng **tóm tắt đóng góp, vai trò, task từng thành viên** | A3 spec §4 | Slide roster 30–40 s (§13.5) |
+| Mọi thành viên phải **giải thích một decision / result / supporting check**; ai cũng hiểu workflow chung | A3 spec §3 | Mỗi người có ≥ 1 lượt "substantive" mang quyết định của chính mình |
+| A1 = *một đường đi đại diện JSON/XML → bảng → finding*, gồm **quyết định parsing/reconciliation, quyết định text-processing, và cách kiểm tra** | A3 spec §3 | Đường đi A1 dùng **cả hai nhóm chủ**: Minh (parse, text) và Tim/Tiansheng (reconcile, check) |
+| 5 phần: Exec summary · A1 · A2-cleansing · A2-Transformation · Reflection; **thứ tự được đổi** | A3 spec §3 | Đủ 5 phần, thứ tự theo logic |
+| **15–20 phút**, có timer | A3 spec §6 | ≈ 18 phút, đệm ≥ 1.5 phút |
+| P: chuyển giao mượt, không cần chia đều giây · G: evidence dễ tìm | Rubric P, G | Lượt dài/ngắn khác nhau; hand-over bằng câu hỏi |
+| Q: câu hỏi riêng; đồng đội chỉ trả lời khi được mời | A3 spec §6, Rubric Q | Mọi người cần "A1 one-pager" (§13.6) |
 
-**Phụ thuộc kỹ thuật của A2 (quyết định thứ tự):**
+**Đường đi A1 chia theo chủ sở hữu** (các quyết định D1–D11 ở §5, A.3):
+
+| Bước của đường đi | Task A1 | Chủ | Quyết định / check |
+|---|---|---|---|
+| Parse có cấu trúc, định dạng khác nhau | Task 1 | **Minh** | D1 (parse, không regex), D2 (normalise, day-first = 31); `T1-P1/P4`, mapping `MAP-product_reviews-*` |
+| Text-processing | Task 3 | **Minh** | D4–D8 (marker list, near-match, emoji theo Unicode block, đa ngôn ngữ, trích tham chiếu trước khi làm sạch); `TXT-03/12`, `T3-TEXT-01/02` |
+| Reconcile thành bảng chuẩn | Task 2 | **Tim/Tiansheng** | D3 (3,850 + 3,850 − 700 = 7,000, 0 xung đột, không precedence), D9 (aggregate rồi join); `T2-R1`, `T2-O1` |
+| Cách kiểm tra | Task 4 (+ `T3-TEXT-04/05`) | **Tim/Tiansheng** | `VAL-FLOW`, `VAL-CONFLICT-01`, `VAL-TEXT-01/02` (7,000/7,000), `T3-TEXT-05` (7,892/7,892) |
+| Finding | Task 5 | **Riley / Sally** | Finding 4–5, Fig 4, MLQ-2 |
+
+⇒ **record-level** (parse, normalise, text) thuộc Minh; **set-level** (reconcile, validation) thuộc Tim/Tiansheng. Đây là cách cắt tự nhiên: *"một bản ghi trở thành các giá trị đúng như thế nào"* rồi *"nhiều bản ghi trở thành một bảng đáng tin như thế nào"*.
+
+**Phụ thuộc kỹ thuật A2:**
 
 ```
-Block 1 (rules: cart→giá, haversine, season, VADER)  [Minh]
-      │  cung cấp predictor distance & happy cho model, và là "diagnostic matrix" của dirty
-      ▼
-Block 4 (model theo mùa, train chỉ trên 420 dòng missing đầy đủ)  [Sally]
-      ▼  dùng bởi
-1.1 dirty [Minh]   1.2 missing [Tiansheng]   1.3 outlier [Sally]
-      ▼  ghi lại bởi
-Block 5 (recorder 9 cột, confidence)  [Riley]  +  2.1 nội dung log [Minh]
-      ▼  xuất & kiểm
-1.4 export · 2.2 read-back  [Riley]   →   Task 3 đọc đúng 3 CSV đã nộp  [Sally 3.1 → Tim/Tiansheng 3.2–3.4 → Sally 3.5]
+Block 1 (rules)  [Minh] ──► Block 4 (model)  [Sally] ──► 1.1 dirty [Minh] · 1.2 missing [Tiansheng] · 1.3 outlier [Sally]
+        ──► Block 5 recorder [Riley] + 2.1 log [Minh] ──► 1.4 export · 2.2 read-back [Riley] ──► Task 3: 3.1 [Sally] → 3.2–3.4 [Tim, Tiansheng] → 3.5 [Sally]
 ```
 
-**Điểm dễ gây phân mảnh:**
-1. **Tim** (1.0 ở đầu, 3.2–3.3 ở cuối) và **Tiansheng** (1.2 giữa, 3.4 cuối) mỗi người có hai chương xa nhau.
-2. **Tim & Tiansheng** nay cùng sở hữu 3 mục Task 3 ⇒ không còn là "cameo 45 s": cần một **panel hai người** có khuôn cố định.
-3. **Sally** có Block 4/1.3 (cleansing) và 3.1/3.5 (transformation) — 3.1 và 3.5 *bọc quanh* panel của Tim/Tiansheng.
-4. **Minh (2.1) và Riley (Block 5) chồng nhau** ở "confidence level definitions" và "audit_log export" ⇒ cần chia rõ (§13.4).
+**Điểm phân mảnh còn lại:** Tim (A1 reconcile/check + 1.0 ở đầu, 3.2–3.3 ở cuối) · Tiansheng (1.2 giữa, 3.4 cuối; chưa có lượt A1 nếu Tim nói set-level) · Minh (A1 record-level ở đầu và A2 ở giữa) · Minh/Riley chồng nhau ở confidence & audit export.
 
-**Giả định (đổi được, xin xác nhận):**
-- **Sally** giữ Block 4 **và 1.3** (1.3 chưa được nêu trong phân công mới).
-- **"Block 1a"** của Minh = toàn bộ Block 1 (cart parse, price vector, rounding/total, haversine, date/season, VADER, validation trên outlier batch). Nếu "1a" chỉ là nửa đầu thì nửa còn lại chưa có chủ.
-- **Tim = 3.2 + 3.3** (baseline đơn vị → hai scaler), **Tiansheng = 3.4** (nonlinear). Nếu hai bạn chia khác, đổi dòng tương ứng.
-- **A1 EDA (Fig 1–8, 10 findings) và ML questions chỉ do Sally/Riley trình bày; Tim không nói finding A1.** "EDA" của Tim trong tài liệu này luôn là **1.0 của A2**.
-- Người nói **A1 provenance** (parse → reconcile → text → check — *không phải EDA*) là một trong Minh/Tim/Tiansheng; mặc định là **Tim** vì liền mạch với 1.0, nhưng **chưa xác nhận Tim có sở hữu phần này**. Đổi theo §13.4 nếu khác.
-- **Riley** nói A1 EDA/ML (Sally đã nặng A2).
-- Tổng ≈ 18 phút nói.
+**Giả định:** Sally giữ cả 1.3; Tim 3.2 + 3.3, Tiansheng 3.4; "Block 1a" = toàn bộ Block 1; Tim nói set-level A1 (Tiansheng backup — xem §13.4); tổng ≈ 18 phút nói.
 
 ### 13.1 Nguyên tắc chung
 
-1. Mỗi lượt = một chương trả lời *một câu hỏi*; hand-over bằng câu hỏi, không bằng tên mục.
-2. **Panel 3.2–3.4**: Tim (3.2 → 3.3) rồi Tiansheng (3.4), cùng khuôn *Question → Decision → Evidence on screen → "so what"*; Sally mở bằng 3.1 và đóng bằng 3.5 nên khán giả thấy một chương, không phải ba.
-3. **Thread ribbon** lặp ở đầu mọi màn hình: *Grain → Expectation → Scale → Proof*.
-4. ≤ 3–4 lần chuyển ngữ cảnh (A1 EDA PDF/NB → A1 solution NB → A2 NB); mở sẵn tab theo thứ tự nói.
-5. Con số nói ra phải đang hiển thị; cue card ≤ 5 ý mỗi người.
+1. Mỗi lượt = một chương trả lời *một câu hỏi*; hand-over bằng câu hỏi.
+2. **A1 finding chỉ do Riley/Sally nói**; người trình bày provenance dừng ở "bảng chuẩn hóa + check".
+3. **Panel 3.2–3.4** (Tim 3.2→3.3, Tiansheng 3.4) dùng khuôn *Question → Decision → Evidence on screen → "so what"*, bọc bởi Sally 3.1 và 3.5.
+4. **Thread ribbon** đầu mỗi màn hình: *Grain → Expectation → Scale → Proof*.
+5. ≤ 3 lần chuyển ngữ cảnh (A1 EDA PDF/NB → A1 solution NB → A2 NB); con số nói ra phải đang hiển thị; cue card ≤ 5 ý.
+6. **Cleansing theo thứ tự spec/notebook (dirty → missing → outlier):** vì Minh phải nói Block 1 trước Block 4 *và* sở hữu dirty, đặt Minh liền một chương (rules → dirty → audit) ít phân mảnh hơn cách "engine-first" (sẽ tách Minh thành hai lượt và thêm lượt). Mô hình được forward-reference một câu ở Minh/Tiansheng.
 
 ---
 
-### 13.2 FLOW A — "Engine-first, thang mơ hồ" (A1 nói trước; mô hình giải thích trước các xử lý)
+### 13.2 FLOW A — "Trace-back": finding → bảng đã kiểm chứng → bản ghi gốc → quy tắc A2
 
-**Luận điểm:** *"Biết một charge đáng là bao nhiêu thì mới biết xử lý dòng sai thế nào."* Cleansing đi từ **biết trường sai → không biết trường sai**: outlier (biết `delivery_charges` sai) → missing (biết ô trống) → dirty (phải chẩn đoán trường gốc). **Block 1 được nói *đúng lúc dùng***, như "diagnostic matrix" của dirty; Sally chỉ nhắc một câu khi giới thiệu predictor của mô hình.
+**Luận điểm:** *"Mỗi con số phải đọc với đúng grain, đúng kỳ vọng, đúng thang đo — và truy được về bản ghi gốc."* A1 được kể **ngược**: Riley nêu finding; Tim chứng minh bảng ("7,000 review, 0 xung đột, trích từ text khớp 7,000/7,000"); rồi **Minh theo một bản ghi từ nguồn đến dòng đó** và đi thẳng vào Block 1 của A2 ("cùng kỷ luật ở cấp bản ghi").
 
 | # | Giờ | Người nói | Nội dung (task) | Câu hỏi hand-over | Evidence mở sẵn |
 |---|---|---|---|---|---|
-| 1 | 0:00–2:15 | **Riley** | Roster (30 s) · Exec summary (45 s) · **A1 claim** (60 s): review chọn lọc theo giá, 44.5% item vs 80.3% order, 27.0% → 63.6% | *"Số này chỉ đúng nếu bảng đúng — một review JSON/XML thành một dòng ra sao?"* | A1 EDA PDF tr. 5, 8; `Group005_EDA.ipynb` Fig 4 |
-| 2 | 2:15–5:00 | **Tim** | **A1 provenance** — *chỉ đường đi tới bảng, không nói finding* (1:30): parse, normalise (day-first = 31), reconcile 3,850+3,850−700 = 7,000, text (marker list, near-match), check 7,892/7,892 · **1.0 của A2** (1:15): 80 ô trống, 8 warehouse sai, 8 vĩ độ dương, 8 ngày lạ, "charge thô ≠ outlier" | *"Một charge đáng là bao nhiêu? — Sally."* | A1 `T2-R1`, `T3-TEXT-05`; A2 `EDA-02/03`, Fig EDA-1 |
-| 3 | 5:00–8:00 | **Sally** | **Block 4 / spec 3.5** (1:30: DELIV-01…05, 10; một câu về predictor từ Block 1) · **1.3 outlier** (1:15: DELIV-07, plateau, 24 đơn; DELIV-08) | *"Outlier dễ vì ta biết trường sai. Khi ô **trống** thì sao? — Tiansheng."* | `DELIV-05`, `DELIV-07` + Fig 3, `DELIV-08` |
-| 4 | 8:00–9:30 | **Tiansheng** | **1.2 missing**: deterministic > algebraic > model; 10 charge khôi phục *đại số* (`high`), 10 cờ expedited chọn bằng model (`medium`); MISS-05 | *"Khó nhất là khi ta **không biết** trường nào sai — Minh."* | `MISS-02…06` |
-| 5 | 9:30–12:30 | **Minh** | **Block 1** như diagnostic matrix (1:00: ngày↔season, haversine, VADER, số học) · **1.1 dirty** (1:15: một trường gốc, sửa đúng một ô) · **2.1** (0:45: một quyết định = một dòng; 184 = 80 + 80 + 24; 166 `high`/18 `medium`; định nghĩa high/medium/low) | *"184 quyết định đó dẫn tới khách hàng nào? — Sally."* | `DIRTY-01…03`, `AUDIT_CONFIDENCE`, bảng lineage `PROF-02` |
-| 6 | 12:30–13:15 | **Sally** | **3.1**: 1,476 đơn → 477 khách; chọn 3 thuộc tính, bỏ `total_paid` | *"Với dữ liệu thô, thuộc tính nào chi phối khoảng cách? — Tim."* | `PROF-02/03` |
-| 7 | 13:15–14:20 | **Tim** | **3.2 + 3.3**: raw units, chi tiêu chiếm 99.9996% (`BASE-03`); z-score chia đều 1/3, min-max 38/16/46% (`SCALE-02`) | *"Biến đổi phi tuyến có giúp không? — Tiansheng."* | `BASE-01/03`, `SCALE-02/03` |
-| 8 | 14:20–15:05 | **Tiansheng** | **3.4**: log làm skew 0.49 → −1.94, min z −6.2; sqrt/log1p lệch distance (`NONLIN-01`) | *"Vậy ta khuyến nghị gì? — Sally."* | `NONLIN-01` |
-| 9 | 15:05–15:55 | **Sally** | **3.5**: none + z-score cả 3; DIST-01: raw giữ 7% láng giềng; limitation | *"Và tất cả khớp với file trên đĩa? — Riley."* | `REC-01`, `DIST-01` |
-| 10 | 15:55–17:55 | **Riley** | **Block 5** (0:40: recorder 9 cột, quy ước giá trị, sửa rule `medium`, smoke test) · **1.4 + 2.2** (0:50: 16 cột, 500/500/476, changed cells = logged cells) · **Reflection** (0:30) | — | `READBACK_*`, `AUDIT_EXPORT`, `RERUN-01` |
+| 1 | 0:00–2:00 | **Riley** | Roster (30 s) · Exec summary (30 s) · **A1 claim** (60 s): 44.5% item vs 80.3% order, 27.0% → 63.6% theo giá | *"Số này chỉ đúng nếu bảng đúng — bảng này có đáng tin không? — Tim."* | A1 EDA PDF tr. 5, 8; Fig 4 |
+| 2 | 2:00–4:45 | **Tim** | **A1 set-level** (1:30; Task 2 + 4): reconcile 3,850+3,850−700 = 7,000, 0 xung đột, không precedence; check `VAL-FLOW`, `VAL-TEXT-01/02`, `T3-TEXT-05` · **1.0 của A2** (1:15): 80 ô trống, 8 warehouse sai, 8 vĩ độ dương, 8 ngày lạ, "charge thô ≠ outlier" | *"Một bản ghi đi từ nguồn tới dòng đó thế nào — và quy tắc cùng kiểu trong A2? — Minh."* | A1 `T2-R1`, `VAL-FLOW-*`; A2 `EDA-02/03`, Fig EDA-1 |
+| 3 | 4:45–8:45 | **Minh** | **A1 record-level** (1:15; Task 1 + 3): một review JSON/XML → parse, normalise (day-first = 31), trích tham chiếu *trước* khi làm sạch, marker list/near-match (`TXT-03/12`) · **Block 1** (0:45) · **1.1 dirty** (1:15) · **2.1** (0:45: 184 = 80 + 80 + 24; định nghĩa high/medium/low) | *"Quy tắc không giúp khi ô trống — Tiansheng."* | A1 `T1-P4`, `T3-TEXT-01/02`; A2 `DIRTY-01…03`, `AUDIT_CONFIDENCE` |
+| 4 | 8:45–10:15 | **Tiansheng** | **1.2 missing**: deterministic > algebraic > model; 10 charge khôi phục đại số (`high`), 10 cờ expedited chọn bằng model (`medium`); MISS-05 | *"Bậc cao nhất là phán đoán bằng mô hình — Sally."* | `MISS-02…06` |
+| 5 | 10:15–13:30 | **Sally** | **Block 4 / 3.5** (1:15) · **1.3 outlier** (1:15) · **3.1** (0:45) | *"Với 477 khách, đơn vị có chi phối không? — Tim."* | `DELIV-05/07/08`, `PROF-02/03` |
+| 6 | 13:30–14:35 | **Tim** | **3.2 + 3.3**: raw units, chi tiêu chiếm 99.9996%; z-score 1/3, min-max 38/16/46% | *"Phi tuyến thì sao? — Tiansheng."* | `BASE-03`, `SCALE-02` |
+| 7 | 14:35–15:20 | **Tiansheng** | **3.4**: log làm skew 0.49 → −1.94 | *"Vậy khuyến nghị? — Sally."* | `NONLIN-01` |
+| 8 | 15:20–16:10 | **Sally** | **3.5**: none + z-score; DIST-01 | *"Khớp file trên đĩa? — Riley."* | `REC-01`, `DIST-01` |
+| 9 | 16:10–18:10 | **Riley** | **Block 5 + 1.4 + 2.2** (1:30) · **Reflection** (0:30) | — | `READBACK_*`, `AUDIT_EXPORT`, `RERUN-01` |
 
-**Tải:** Riley 4:15 · Sally 4:35 · Tim 3:50 · Minh 3:00 · Tiansheng 2:15 (tổng 17:55).
-**Ưu điểm:** đúng thứ tự phụ thuộc kỹ thuật (model trước các xử lý); A1 nói sớm nên không bị timer cắt; Block 1 xuất hiện lúc nó thực sự là công cụ (dirty).
-**Rủi ro & cách giảm:** 10 lượt (nhiều nhất) và Sally 3 lần xuất hiện → ribbon + hand-over bằng câu hỏi, chuẩn bị tab; cleansing khác thứ tự spec → nói câu *"we order the treatments by how much we know about the wrong field"* ở đầu chương; Task 3 có 4 giọng → khuôn panel cố định, nếu quá giờ giảm 3.2–3.4 xuống 1 câu/mục.
+**Tải:** Minh 4:00 · Sally 4:05 · Riley 4:00 · Tim 3:50 · Tiansheng 2:15 (tổng 18:10).
+**Ưu điểm:** **9 lượt**; Minh nói **A1 record-level → Block 1 → dirty → audit liền một chương** (cùng loại tư duy "quy tắc theo bản ghi"); Tim nói **A1 set-level → 1.0** liền (cùng loại tư duy "bảng/grain"); mỗi người có một chương liền.
+**Rủi ro & cách giảm:** A1 kể ngược có thể làm khán giả khựng → Riley nói rõ *"we start from the finding, verify the table, then follow one record back to the source"*; Minh dùng đúng *một* review (ví dụ HREV004637) làm thread; mô hình được nhắc trước khi giải thích → forward-reference một câu.
 
 ---
 
-### 13.3 FLOW B — "Rules-first, thang bằng chứng" (đúng thứ tự spec/notebook; chương A1 giống Flow A)
+### 13.3 FLOW B — "Forward path": nguồn → bản ghi → bảng → finding (A1 theo chiều đọc tự nhiên)
 
-**Luận điểm:** *"Ta chỉ dựa vào mô hình khi quy tắc không còn đủ — và confidence phản ánh điều đó."* Mức phụ thuộc mô hình tăng dần: dirty (quy tắc) → missing (quy tắc → đại số → mô hình) → outlier (mô hình là detector). Mỗi người sở hữu **một chương liền**: Minh (Block 1 → 1.1 → 2.1), Sally (Block 4 → 1.3 → 3.1).
+**Luận điểm:** như Flow A, nhưng A1 kể **xuôi**: bản ghi (Minh) → bảng (Tim) — rồi mới tới A2. Mức phụ thuộc mô hình tăng dần ở A2: dirty (quy tắc) → missing (→ mô hình cho cờ expedited) → outlier (mô hình là detector).
 
 | # | Giờ | Người nói | Nội dung (task) | Câu hỏi hand-over | Evidence mở sẵn |
 |---|---|---|---|---|---|
-| 1 | 0:00–2:30 | **Riley** | Roster (30 s) · Exec summary (45 s) · **A1 claim** (75 s): review chọn lọc theo giá, 44.5% item vs 80.3% order, 27.0% → 63.6%; MLQ-2 làm bước tiếp | *"Số này chỉ đúng nếu bảng đúng — và dữ liệu A2 sai ở đâu?"* | A1 EDA PDF tr. 5, 8; Fig 4 |
-| 2 | 2:30–5:30 | **Tim** | **A1 provenance** (1:45; chỉ tới bảng chuẩn hóa + check, *không nói finding*) → **1.0 của A2** (1:15) | *"Bắt đầu bằng quy tắc cho một đáp án duy nhất — Minh."* | A1 `T2-R1`, `T3-TEXT-05`; A2 `EDA-02/03` |
-| 3 | 5:30–8:45 | **Minh** | **Block 1** (1:15) → **1.1 dirty** (1:15) → **2.1** (0:45; 184 = 80 + 80 + 24; high/medium/low) | *"Quy tắc không giúp khi ô trống — Tiansheng."* | `DIRTY-01…03`, `AUDIT_CONFIDENCE` |
-| 4 | 8:45–10:15 | **Tiansheng** | **1.2 missing** + bậc thang: đại số (10 charge, `high`) → model (10 cờ expedited, `medium`); báo trước "mô hình giải thích ngay sau đây" | *"Bậc cao nhất là phán đoán bằng mô hình — Sally."* | `MISS-02…06` |
-| 5 | 10:15–13:45 | **Sally** | **Block 4 / 3.5** (1:30) → **1.3 outlier** (1:15) → **3.1** (0:45: Task 3 đọc outlier_clean 476 + hai CSV kia) | *"Với 477 khách, đơn vị có chi phối không? — Tim."* | `DELIV-05/07/08`, `PROF-02/03` |
-| 6 | 13:45–14:50 | **Tim** | **3.2 + 3.3** | *"Phi tuyến thì sao? — Tiansheng."* | `BASE-03`, `SCALE-02` |
-| 7 | 14:50–15:35 | **Tiansheng** | **3.4** | *"Khuyến nghị? — Sally."* | `NONLIN-01` |
-| 8 | 15:35–16:25 | **Sally** | **3.5** | *"Khớp file trên đĩa? — Riley."* | `REC-01`, `DIST-01` |
-| 9 | 16:25–18:25 | **Riley** | **Block 5 + 1.4 + 2.2** (1:30) · **Reflection** (0:30) | — | `READBACK_*`, `RERUN-01` |
+| 1 | 0:00–2:00 | **Riley** | Roster · Exec summary · **A1 claim** (44.5% item, 27.0% → 63.6%) | *"Một review JSON/XML trở thành một dòng đáng tin như thế nào? — Minh."* | A1 EDA PDF tr. 5, 8; Fig 4 |
+| 2 | 2:00–3:15 | **Minh** | **A1 record-level** (Task 1 + 3): parse, normalise (day-first), text (marker list, near-match) trên *một* review | *"Nhiều bản ghi → một bảng — Tim."* | A1 `T1-P4`, `T3-TEXT-02` |
+| 3 | 3:15–5:45 | **Tim** | **A1 set-level** (1:15; Task 2 + 4): reconcile 7,000, 0 xung đột; `VAL-FLOW`, `T3-TEXT-05` · **1.0 của A2** (1:15) | *"Quy tắc cho một đáp án duy nhất — Minh."* | A1 `T2-R1`; A2 `EDA-02/03` |
+| 4 | 5:45–8:30 | **Minh** | **Block 1** (0:45) · **1.1 dirty** (1:15) · **2.1** (0:45) | *"Khi ô trống — Tiansheng."* | `DIRTY-01…03`, `AUDIT_CONFIDENCE` |
+| 5 | 8:30–10:00 | **Tiansheng** | **1.2 missing** | *"Bậc cao nhất — Sally."* | `MISS-02…06` |
+| 6 | 10:00–13:15 | **Sally** | **Block 4 / 3.5** → **1.3** → **3.1** | *"477 khách — Tim."* | `DELIV-05/07/08`, `PROF-02/03` |
+| 7 | 13:15–14:20 | **Tim** | **3.2 + 3.3** | *"— Tiansheng."* | `BASE-03`, `SCALE-02` |
+| 8 | 14:20–15:05 | **Tiansheng** | **3.4** | *"— Sally."* | `NONLIN-01` |
+| 9 | 15:05–15:55 | **Sally** | **3.5** | *"Khớp file trên đĩa? — Riley."* | `REC-01`, `DIST-01` |
+| 10 | 15:55–17:55 | **Riley** | **Block 5 + 1.4 + 2.2** · **Reflection** | — | `READBACK_*`, `RERUN-01` |
 
-**Tải:** Riley 4:30 · Tim 4:05 · Sally 4:20 · Minh 3:15 · Tiansheng 2:15 (tổng 18:25).
-**Ưu điểm:** 9 lượt; Minh và Sally mỗi người một chương liền; giải thích rõ nhất "vì sao ba xử lý khác nhau"; finding A1 luôn do Riley nói (không do Tim).
-**Rủi ro & cách giảm:** mô hình được giải thích *sau* khi dirty/missing đã nhắc → forward-reference một câu ("expected charge — explained next"); chương A1 (lượt 1–2) giống Flow A nên không còn rủi ro A1 bị tách đôi; Riley xuất hiện hai lần (mở và đóng).
+**Tải:** Riley 4:00 · Minh 4:00 · Sally 4:05 · Tim 3:35 · Tiansheng 2:15 (tổng 17:55).
+**Ưu điểm:** A1 đúng chiều đọc (nguồn → bảng → finding): dễ theo dõi nhất với người chưa biết dữ liệu.
+**Rủi ro:** **10 lượt**; Minh xuất hiện hai lần cách nhau Tim (A1 → A2) → hand-over bằng câu hỏi và để Minh mở lại đúng tab; lượt 2 của Minh chỉ 1:15, dễ bị cắt cụt nếu trượt giờ.
 
 ---
 
-### 13.4 So sánh, khuyến nghị và việc chia Minh ↔ Riley
+### 13.4 So sánh, khuyến nghị, phần chồng nhau
 
-| Tiêu chí | Flow A (engine-first) | Flow B (rules-first) |
+| Tiêu chí | Flow A (trace-back) | Flow B (forward) |
 |---|---|---|
-| Thứ tự phụ thuộc kỹ thuật | **Đúng** (model trước xử lý) | Cần forward-reference |
-| Thứ tự spec/notebook (dirty → missing → outlier) | Khác | **Đúng** |
-| Số lượt nói | 10 (Sally 3 lần) | **9** (Minh, Sally mỗi người một chương liền) |
-| A1 bị rủi ro timer cắt | **Thấp** (nói sớm) | **Thấp** (nói sớm) |
-| Mạch kể "vì sao ba xử lý khác nhau" | Tốt (thang mơ hồ) | **Rất tốt** (thang phụ thuộc mô hình) |
+| Số lượt | **9** | 10 |
+| Minh | **một chương liền** (A1 record → Block 1 → dirty → audit) | hai lượt (A1, rồi A2) |
+| Tim | A1 set-level + 1.0 liền; panel 3.2–3.3 | giống A |
+| Chiều kể A1 | ngược (finding → bảng → bản ghi) | **xuôi** (bản ghi → bảng) |
+| Rủi ro người nghe khựng | Trung bình (cần câu mở) | **Thấp** |
 | Chuyển ngữ cảnh | 3 | 3 |
-| Cần luyện tập | Cao (nhiều hand-over) | Vừa–cao |
+| Cần luyện tập | Vừa | Vừa–cao (nhiều hand-over) |
 
-**Khuyến nghị:** với phân công mới, **Flow B là mặc định hợp lý hơn** vì Block 1 → 1.1 → 2.1 (Minh) và Block 4 → 1.3 → 3.1 (Sally) mỗi cái là một chương liền, ít phân mảnh nhất. Dùng **Flow A** nếu nhóm coi trọng việc mô hình phải được giải thích trước, chấp nhận 10 lượt. Hai flow giờ chỉ khác nhau ở **thứ tự phần cleansing** (và hệ quả về số lượt).
+**Khuyến nghị:** **Flow A** nếu nhóm ưu tiên ít phân mảnh và mỗi người một chương liền; **Flow B** nếu nhóm coi trọng việc người nghe theo dõi A1 theo chiều tự nhiên. Cả hai dùng cùng panel Task 3 và cùng cleansing theo thứ tự spec, nên đổi giữa chúng muộn vẫn được.
 
-**Chia Minh (2.1) ↔ Riley (Block 5):** *Minh = nội dung & ý nghĩa của log* (một quyết định = một dòng; định nghĩa high/medium/low bằng một câu; thống kê 184 dòng). *Riley = máy ghi & toàn vẹn* (recorder 9 cột, quy ước giá trị, sửa rule `medium`, smoke test, export, read-back khớp "changed cells = logged cells"). Minh nói trước nên đưa định nghĩa; Riley nhắc lại *không định nghĩa lại*.
+**Tiansheng chưa có lượt A1.** Hai cách (chọn một):
+- *Giữ nguyên:* Tiansheng nói 1.2 và 3.4; A1 chỉ có trong roster và Q&A (cần one-pager Task 2/4).
+- *Chia set-level:* Tim nói **reconcile (Task 2)** 0:45, Tiansheng nói **check (Task 4)** 0:45 rồi Tim tiếp 1.0 — thêm một lượt nhưng cân tải (Tiansheng 3:00) và đúng nguyên tắc "người sở hữu check trình bày check". Dùng nếu bạn thấy Tiansheng cần thêm thời lượng substantive.
 
-**Nếu Tim không sở hữu phần A1 reconcile/text:** đổi người nói provenance sang người sở hữu thật (Minh hoặc Tiansheng). Khi đó Tim chỉ nói 1.0 (A2) và được thêm 30–45 s ở panel Task 3; người nói provenance *không* nói 1.0 trừ khi cần liền mạch. Giữ nguyên quy tắc: **finding A1 chỉ do Riley/Sally nói**, người nói provenance dừng ở "bảng chuẩn hóa + check".
+**Chia Minh (2.1) ↔ Riley (Block 5):** *Minh = nội dung & ý nghĩa của log* (một quyết định = một dòng; định nghĩa high/medium/low một câu; 184 dòng); *Riley = máy ghi & toàn vẹn* (recorder 9 cột, quy ước giá trị, sửa rule `medium`, smoke test, export, read-back "changed cells = logged cells"). Riley nhắc lại, *không định nghĩa lại*.
 
 ### 13.5 Slide roster (30–40 s, bắt buộc theo spec §4)
 
 | Thành viên | Vai trò | A1 | A2 | Nói ở | Sẵn sàng trả lời |
 |---|---|---|---|---|---|
-| Riley | Verifier & integrator | EDA + ML questions | Block 5 · 1.4 export · 2.2 read-back | Mở/đóng | Fig 1–8, 10 findings, MLQ; recorder, `medium` rule, read-back |
-| Tim | Data investigator | `[phần A1 của Tim — không phải EDA]` | 1.0 (EDA của A2) · 3.2–3.3 | Provenance + 1.0; panel Task 3 | JSON/XML → bảng (nếu là phần của Tim); EDA của A2 (1.0); baseline đơn vị, z-score vs min-max |
-| Sally | Modeller & analyst | EDA (đồng sở hữu) | Block 4 · 1.3 · 3.1 · 3.5 | Engine/outlier + 3.1; 3.5 | model, τ, outlier; customer copy, recommendation |
-| Minh | Rules, cleaner & auditor | `[phần A1 của Minh]` | Block 1 · 1.1 · 2.1 | Rules + dirty + audit | root-field diagnosis, confidence |
-| Tiansheng | Recoverer | `[phần A1 của Tiansheng]` | 1.2 missing · 3.4 | Missing; panel 3.4 | hierarchy, imputation; log/sqrt |
-
-*(Điền cột A1 của Minh/Tim/Tiansheng theo thực tế; tôi không có phân công A1 của họ.)*
+| Riley | Verifier & integrator | Task 5–6: EDA + ML questions | Block 5 · 1.4 · 2.2 | Mở/đóng | Fig 1–8, 10 findings, MLQ; recorder, `medium` rule, read-back |
+| Sally | Modeller & analyst | Task 5–6: EDA (đồng sở hữu) | Block 4 · 1.3 · 3.1 · 3.5 | Engine + 3.1; 3.5 | model, τ, outlier; customer copy, recommendation |
+| Minh | Rules & auditor | **Task 1** (parse/profile, mapping) + **Task 3** (text/regex) | Block 1 · 1.1 · 2.1 | A1 record-level → rules/dirty/audit | parse, normalise, text functions; root-field diagnosis, confidence |
+| Tim | Data investigator | **Task 2** (reconcile, bảng) + **Task 4** (validation) *(cùng Tiansheng)* | 1.0 · 3.2–3.3 | A1 set-level + 1.0; panel | reconcile, VAL-*; EDA của A2; baseline đơn vị, z-score vs min-max |
+| Tiansheng | Recoverer | **Task 2 + Task 4** *(cùng Tim)* | 1.2 · 3.4 | Missing; panel 3.4 | reconcile/validation (backup); hierarchy, imputation; log/sqrt |
 
 ### 13.6 Q&A readiness
 
-**A1 one-pager (ai cũng nhớ):** 5,000 orders / 15,739 item lines / 7,000 reviews / 500 customers · reconcile 3,850 + 3,850 − 700 = 7,000, **0 xung đột** · day-first vì ngày XML tới **31** · review phủ **80.3%** order nhưng **44.5%** item, **27.0% → 63.6%** theo giá · Nickolson OTIF **92.2%** vs 88.8% (+3.44 pp) · SKU trích từ text khớp **7,892/7,892** · MLQ-2: label ≤ 30 ngày, cohort theo thời gian, loại thuộc tính từ review · limitation: cutoff trích xuất chưa xác minh.
+**Người trả lời chính:** A1 parse/profile/mapping/text → **Minh** · A1 reconcile, bảng, validation → **Tim, Tiansheng** · A1 EDA/MLQ → **Riley, Sally** · Block 1, dirty, nội dung log → **Minh** · missing → **Tiansheng** · Block 4, outlier, customer copy, recommendation → **Sally** · 3.2–3.4 → **Tim, Tiansheng** · recorder, export, read-back → **Riley**.
 
-**Cross-cover:** mỗi người đọc phần *Grain – Units – Limits* của hai chương liền kề trong flow đã chọn.
+**A1 one-pager (ai cũng nhớ):** 5,000 orders / 15,739 item lines / 7,000 reviews / 500 customers · reconcile 3,850 + 3,850 − 700 = 7,000, **0 xung đột** · day-first vì ngày XML tới **31** · review phủ **80.3%** order nhưng **44.5%** item, **27.0% → 63.6%** theo giá · SKU trích từ text khớp **7,892/7,892** (và **7,000/7,000** theo cấu trúc) · Nickolson OTIF **92.2%** vs 88.8% · MLQ-2: label ≤ 30 ngày, cohort theo thời gian · limitation: cutoff trích xuất chưa xác minh.
 
-**Người trả lời chính:** A1 path/reconcile/text → Tim (hoặc người đã chọn) · A1 EDA/MLQ → Riley, Sally · Block 1 & dirty & log content → Minh · missing → Tiansheng · Block 4 & outlier & customer copy & recommendation → Sally · 3.2–3.4 → Tim, Tiansheng · recorder, export, read-back → Riley.
+**Cross-cover:** Minh đọc Task 2/4 (reconcile, `VAL-FLOW`, `VAL-CONFLICT-01`); Tim và Tiansheng đọc Task 1/3 (`T1-P4`, `TXT-03/12`); Sally/Riley đọc cả bốn Task ở mức tiêu đề — vì giám khảo có thể hỏi bất kỳ ai về workflow chung.
 
 ### 13.7 Việc cần xác nhận
-1. **"Block 1a"** nghĩa là toàn bộ Block 1 hay một phần? (phần còn lại ai giữ?)
-2. **1.3 outlier** thuộc Sally (giả định)?
-3. Cách chia **3.2–3.4** giữa Tim và Tiansheng (giả định: Tim 3.2 + 3.3, Tiansheng 3.4).
-4. Phần A1 thực tế của Minh, Tim, Tiansheng → chọn người nói provenance.
-5. Chọn **Flow A hay B**; ai mở/đóng (đề xuất Riley cả hai đầu).
+1. Tim hay Tiansheng nói **A1 set-level** (mặc định Tim; hoặc chia theo "Chia set-level" ở §13.4).
+2. **Flow A hay B.**
+3. Sally giữ **1.3**; **"Block 1a"** = toàn bộ Block 1; cách chia **3.2–3.4** giữa Tim và Tiansheng.
+4. Ai mở/đóng (đề xuất Riley cả hai đầu).
 
 ---
 
